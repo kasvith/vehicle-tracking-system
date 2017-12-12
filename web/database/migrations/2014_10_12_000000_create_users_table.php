@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email', 100)->unique()->nullable();
             $table->string('password');
             $table->enum('type', ['admin', 'officer']);
-            $table->string('nic', 15)->unique();
+            $table->string('nic', 20)->unique();
+            $table->string('address',200)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

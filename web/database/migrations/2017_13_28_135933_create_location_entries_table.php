@@ -19,6 +19,12 @@ class CreateLocationEntriesTable extends Migration
             $table->double('lng');
             $table->string('note','300')->nullable();
 
+	        $table->integer('user_id')->unsigned();
+	        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+	        $table->integer('vehicle_id')->unsigned();
+	        $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
