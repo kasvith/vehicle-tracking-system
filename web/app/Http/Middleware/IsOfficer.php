@@ -15,6 +15,9 @@ class IsOfficer
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+    	if ($request->user()->type == 'officer')
+            return $next($request);
+
+    	return abort(403);
     }
 }

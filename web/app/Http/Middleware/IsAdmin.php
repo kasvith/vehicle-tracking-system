@@ -15,6 +15,9 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+    	if ($request->user()->type == 'admin')
+		    return $next($request);
+
+    	return abort(403);
     }
 }

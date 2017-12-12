@@ -13,4 +13,8 @@ class Vehicle extends Model
     public function images(){
     	return $this->hasMany(Image::class);
     }
+
+    public function location_entries(){
+    	return $this->hasMany(LocationEntry::class);
+    }
 }
