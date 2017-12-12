@@ -1069,7 +1069,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				position: coordinate,
 				map: this.map,
 				draggable: draggable,
-				animation: google.maps.Animation.DROP
+				animation: google.maps.Animation.DROP,
+				title: 'Current Location'
 			});
 			this.markers.push(marker);
 		},

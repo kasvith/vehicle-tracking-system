@@ -72,6 +72,7 @@ export default {
 				map: this.map,
 				draggable: draggable,
 				animation: google.maps.Animation.DROP,
+				title: 'Current Location'
 			});
 			this.markers.push(marker);
 		},
