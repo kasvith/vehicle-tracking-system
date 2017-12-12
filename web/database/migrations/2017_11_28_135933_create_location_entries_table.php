@@ -15,6 +15,10 @@ class CreateLocationEntriesTable extends Migration
     {
         Schema::create('location_entries', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('lat');
+            $table->double('lng');
+            $table->string('note','300')->nullable();
+
             $table->timestamps();
         });
     }
