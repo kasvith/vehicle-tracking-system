@@ -19,6 +19,10 @@ Route::get('/admin', function (){
 });
 
 
+Route::get('admin/create/user', function (){
+	return view('admin.add-user');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

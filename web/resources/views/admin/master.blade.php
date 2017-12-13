@@ -19,7 +19,7 @@
 
             <!-- Main content -->
             <section class="content container-fluid">
-                content
+                @yield('content')
             </section>
             <!-- /.content -->
         </div>

@@ -970,7 +970,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	props: {
 		name: { required: true },
 		width: { Number: Number },
-		height: { Number: Number }
+		height: { Number: Number },
+		add_entry: { required: true }
 	},
 	data: function data() {
 		return {
@@ -1006,6 +1007,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		get_height: function get_height() {
 			return this.height + 'px';
 		},
+		addEntry: function addEntry() {},
 		geoLocation: function geoLocation() {
 			var _this = this;
 
@@ -1058,18 +1060,20 @@ var render = function() {
       attrs: { id: _vm.map_name }
     }),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
-        on: {
-          click: function($event) {
-            _vm.geoLocation()
-          }
-        }
-      },
-      [_vm._v("Get current location")]
-    )
+    _vm.add_entry == true
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                _vm.geoLocation()
+              }
+            }
+          },
+          [_vm._v("Get current location")]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

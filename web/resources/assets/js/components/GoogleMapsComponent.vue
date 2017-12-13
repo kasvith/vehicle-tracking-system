@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="google-map" :id="map_name" :style="styles"></div>
-		<button class="btn btn-primary" @click="geoLocation()">Get current location</button>
+		<button v-if="add_entry == true" class="btn btn-primary" @click="geoLocation()">Get current location</button>
 	</div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
 		name: {required : true},
 		width: {Number},
 		height: {Number},
+		add_entry: {required : true}
 	},
 	data () {
 		return {
@@ -48,6 +49,10 @@ export default {
 			return this.height + 'px';
 		},
 
+		addEntry(){
+
+		},
+
 		geoLocation(){
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition((position) => {
@@ -78,11 +83,11 @@ export default {
 		},
 
 		handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        this.infoWindow.setPosition(pos);
-        this.infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(this.map);
+			this.infoWindow.setPosition(pos);
+			this.infoWindow.setContent(browserHasGeolocation ?
+								'Error: The Geolocation service failed.' :
+								'Error: Your browser doesn\'t support geolocation.');
+			infoWindow.open(this.map);
       }
   	}
 }
