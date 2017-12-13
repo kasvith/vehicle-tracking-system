@@ -4,3 +4,5 @@
 <script src="{{ asset('_admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('_admin/js/adminlte.js') }}"></script>
+
+@yield('user-scripts')
