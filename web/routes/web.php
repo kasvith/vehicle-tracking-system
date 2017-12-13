@@ -22,6 +22,10 @@ Route::get('/admin', function (){
 Route::get('admin/create/user', function (){
 	return view('admin.add-user');
 });
+//temp
+Route::get('admin/create/owner', function (){
+    return view('admin.add-owner');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 

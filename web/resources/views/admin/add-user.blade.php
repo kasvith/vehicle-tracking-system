@@ -1,38 +1,52 @@
 @extends('admin.master')
 
-@section('page-title', 'Add New User')
-@section('optional-title', 'add a new user to the system')
+@section('page-title', 'Add New Admin/Officer')
+@section('optional-title', 'You can add a new Admin/Officer to the system')
 
 @section('content')
     <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Quick Example</h3>
+                    <h3 class="box-title">Information</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <label for="exampleInputUserType">User Type</label>
+
+                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            name="type">
+                                <option value="admin">Admin</option>
+                                <option value="officer">Officer</option>
+                            </select>
+
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label for="exampleInputName">Name</label>
+                            <input type="Name" class="form-control" id="exampleInputName" placeholder="Enter User Name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
+                            <label for="exampleInputNIC">NIC Number</label>
+                            <input type="NICnumber" class="form-control" id="exampleInputNICnumber" placeholder="NIC Number" name="nic">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">E-mail</label>
+                            <input type="Email" class="form-control" id="exampleInputEmail" placeholder="Enter User E-mail" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Address</label>
+                            <input type="Address" class="form-control" id="exampleInputAddress" placeholder="Enter User Address" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">User Image</label>
                             <input type="file" id="exampleInputFile">
 
-                            <p class="help-block">Example block-level help text here.</p>
+                            <p class="help-block">Use .xxx images only.</p>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Check me out
-                            </label>
-                        </div>
+
                     </div>
                     <!-- /.box-body -->
 
