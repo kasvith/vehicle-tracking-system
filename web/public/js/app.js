@@ -964,6 +964,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'google-maps',
@@ -978,6 +984,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			infoWindow: null,
 			map: null,
 			markers: [],
+			locationEntry: {},
+			lat: '',
+			lng: '',
+			note: '',
 			styles: {
 				width: this.get_width(),
 				height: this.get_height()
@@ -1060,8 +1070,38 @@ var render = function() {
       attrs: { id: _vm.map_name }
     }),
     _vm._v(" "),
-    _vm.add_entry == true
-      ? _c(
+    _c(
+      "form",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.add_entry,
+            expression: "add_entry"
+          }
+        ],
+        staticClass: "form",
+        attrs: { action: "" }
+      },
+      [
+        _c("input", { attrs: { type: "hidden", name: "lat", required: "" } }),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "hidden", name: "lng", required: "" } }),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control mt-1",
+          attrs: {
+            name: "note",
+            id: "",
+            cols: "60",
+            rows: "8",
+            placeholder: "Take a note",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _c(
           "button",
           {
             staticClass: "btn btn-primary",
@@ -1073,7 +1113,8 @@ var render = function() {
           },
           [_vm._v("Get current location")]
         )
-      : _vm._e()
+      ]
+    )
   ])
 }
 var staticRenderFns = []

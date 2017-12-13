@@ -1,7 +1,13 @@
 <template>
 	<div>
 		<div class="google-map" :id="map_name" :style="styles"></div>
-		<button v-if="add_entry == true" class="btn btn-primary" @click="geoLocation()">Get current location</button>
+		<form action="" v-show="add_entry" class="form">
+			<input type="hidden" name="lat" required/>
+			<input type="hidden" name="lng" required/>
+			<textarea name="note" id="" cols="60" rows="8" class="form-control mt-1" placeholder="Take a note" required></textarea>
+			<button class="btn btn-primary" @click="geoLocation()">Get current location</button>
+		</form>
+		
 	</div>
 </template>
 
@@ -12,13 +18,17 @@ export default {
 		name: {required : true},
 		width: {Number},
 		height: {Number},
-		add_entry: {required : true}
+		add_entry: {required : true},
 	},
 	data () {
 		return {
 			infoWindow: null,
 			map: null,
 			markers: [],
+			locationEntry: {},
+			lat: '',
+			lng: '',
+			note: '',
 			styles : {
 				width : this.get_width(),
 				height : this.get_height(),
