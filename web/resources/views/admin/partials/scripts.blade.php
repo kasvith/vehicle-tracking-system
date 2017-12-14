@@ -5,4 +5,6 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('_admin/js/adminlte.js') }}"></script>
 
+<script src="{{ asset('_admin/plugins/iCheck/icheck.min.js') }}"></script>
+
 @yield('user-scripts')

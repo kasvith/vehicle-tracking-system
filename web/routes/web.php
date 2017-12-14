@@ -18,6 +18,10 @@ Route::get('/admin', function (){
 	return view('admin.master');
 });
 
+Route::get('/admin/login', function (){
+	return view('admin.login');
+});
+
 
 Route::get('admin/create/user', function (){
 	return view('admin.add-user');
