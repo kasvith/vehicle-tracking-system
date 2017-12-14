@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Laravel</title>
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -26,7 +26,7 @@
         <div class="content">
             <div id="app">
                 <identifier-component action="/page/to/action" method="get"></identifier-component>
-                <google-maps name="loc" width="400" height="300" :locations="{{  $locations }}" add_entry="false" add_entry_endpoint="some/page"></google-maps>
+                <google-maps name="loc" width="400" height="300" :locations="{{  $locations }}" add-entry-endpoint="/page"></google-maps>
             </div>
 
 

@@ -1,15 +1,21 @@
 <template>
 	<div>
-		<div class="google-map" :id="map_name" :style="styles"></div>
-		<form :action="add_entry_endpoint" @submit="addEntry" method="get" v-show="add_entry === true" class="form">
-			<input type="hidden" name="lat" v-model="lat" required/>
-			<input type="hidden" name="lng" v-model='lng' required/>
-			<input type="hidden" name="location" v-model="location" required>
-			<div class="info" v-show="location">Location : {{ location }}</div>
-			<textarea name="note" id="" cols="60" rows="8" class="form-control mt-1" placeholder="Take a note" required></textarea>
-			<a class="btn btn-success" @click="geoLocation()">Get current location</a>
-			<button class="btn btn-primary">Add new entry</button>
-		</form>
+		<div class="google-map" :id="map_name" :style="styles">
+			<div>btn</div>
+		</div>
+		<div v-if="addEntryEndpoint">
+			<form :action="addEntryEndpoint" @submit="addEntry" method="get" class="form">
+				<input type="hidden" name="lat" v-model="lat" required/>
+				<input type="hidden" name="lng" v-model='lng' required/>
+				<input type="hidden" name="location" v-model="location" required>
+				<div class="p-1 m-1 text-center"><h6>Location : <b> {{ location }} </b></h6></div>
+				<textarea name="note" rows="8" class="form-control p-1" v-model="note" placeholder="Take a note" required></textarea>
+				<div class="text-center p-1 m-1">
+					<button class="btn btn-primary"><i class="fa fa-plus"></i> Add Entry</button>
+					<button class="btn btn-danger" @click.prevent="clear"><i class="fa fa-eraser"></i> Clear</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </template>
 
@@ -20,10 +26,9 @@ export default {
 		name: {required : true},
 		width: {Number},
 		height: {Number},
-		add_entry: {required : true},
-		add_entry_endpoint: {String},
+		addEntryEndpoint: {String},
 		locations: {type: Array},
-		zoom: {type : Number, default: 7}
+		zoom: {type : Number, default: 8}
 	},
 	data () {
 		return {
@@ -31,14 +36,13 @@ export default {
 			map: null,
 			markers: [],
 			location_marker: false,
-			locationEntry: {},
+			locationEntry: {}, 
 			lat: null,
 			lng: null,
 			note: '',
-			location:'',
+			location:'Locating...',
 			geocoder: null,
 			styles : {
-				width : this.get_width(),
 				height : this.get_height(),
 			}
 		}
@@ -59,7 +63,13 @@ export default {
 	    this.infoWindow = new google.maps.InfoWindow;
 	    this.geocoder = new google.maps.Geocoder;
 
-	    if (this.add_entry === true) {
+	    var centerControlDiv = document.createElement('div');
+        var centerControl = new this.CenterControl(centerControlDiv, this.map);
+
+        centerControlDiv.index = 1;
+        this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+	    if (this.addEntryEndpoint) {
 	    	this.geoLocation()
 	    }else{
 	    	this.renderAll()
@@ -74,9 +84,36 @@ export default {
 		get_height(){
 			return this.height + 'px';
 		},
+		CenterControl(controlDiv, map) {
+	        // Set CSS for the control border.
+	        var controlUI = document.createElement('div');
+	        controlUI.style.backgroundColor = '#fff';
+	        controlUI.style.border = '2px solid #fff';
+	        controlUI.style.borderRadius = '3px';
+	        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+	        controlUI.style.cursor = 'pointer';
+	        controlUI.style.margin = '5px';
+	        controlUI.style.textAlign = 'center';
+	        controlUI.title = 'Click to find your location';
+	        controlDiv.appendChild(controlUI);
+
+	        // Set CSS for the control interior.
+	        var controlText = document.createElement('div');
+	        controlText.style.color = 'rgb(25,25,25)';
+	        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+	        controlText.style.fontSize = '16px';
+	        controlText.style.lineHeight = '38px';
+	        controlText.style.paddingLeft = '5px';
+	        controlText.style.paddingRight = '5px';
+	        controlText.innerHTML = '<i class="fa fa-location-arrow" aria-hidden="true"></i> My Location';
+	        controlUI.appendChild(controlText);
+
+	        // Setup the click event listeners: simply set the map to Chicago.
+	        controlUI.addEventListener('click', this.geoLocation);
+      	},
 
 		addEntry(){
-			if (this.lat == null || this.lng == null) {
+			if (this.lat == null || this.lng == null || this.location == 'Locating...') {
 				alert('Please select the location')
 				event.preventDefault()
 			}
@@ -91,15 +128,18 @@ export default {
 						lng: location.lng,
 					}
 
-					let marker = this.renderMarker(pos, location.created_at)
-					let content = '<div id="content">'+ location.note +'</div>'
-					let infowindow = new google.maps.InfoWindow
+					// we will need to change this later
+					let marker = this.renderMarker(pos, location.created_at, false);
+					let content = '<div id="content">'+ location.note +'</div>';
+					let infowindow = new google.maps.InfoWindow;
+
 					google.maps.event.addListener(marker, 'click', ((marker,content,infowindow) => {
 						return function(){
 							infowindow.setContent(content)
 							infowindow.open(this.map, marker)
 						}
 					})(marker,content,infowindow));
+
 				})
 			}
 		},
@@ -120,9 +160,13 @@ export default {
 		            	return
 		            }
 
-		            this.location_marker = this.renderMarker(pos, true);
+		            this.location_marker = this.renderMarker(pos,'Current Location' ,true);
 		            this.location_marker.addListener('dragend', (e) => {
-		            	this.getLocationName(e.latLng)
+		            	let pos = {
+		            		lat : e.latLng.lat(),
+		            		lng : e.latLng.lng()
+		            	}
+		            	this.getLocationName(pos);
 		            })
 		            this.getLocationName(pos);
 				}, (err) => {
@@ -136,6 +180,7 @@ export default {
 		getLocationName(location){
 			this.lat = location.lat;
 		    this.lng = location.lng;
+		    this.location = 'Locating...';
 			this.geocoder.geocode({'location' : location}, (res, stat) => {
 				if (stat === 'OK') {
 					this.location = res[0].formatted_address;
@@ -145,7 +190,7 @@ export default {
 			});
 		},
 
-		renderMarker(coordinate, title="Current Location" ,draggable=false){
+		renderMarker(coordinate, title ,draggable){
 			const marker = new google.maps.Marker({
 				position: coordinate,
 				map: this.map,
@@ -164,7 +209,13 @@ export default {
 								'Error: The Geolocation service failed.' :
 								'Error: Your browser doesn\'t support geolocation.');
 			infoWindow.open(this.map);
-      }
+      	},
+
+      	clear(){
+      		this.note = '';
+      		this.location = 'Locating...';
+      		this.geoLocation();
+      	}
   	}
 }
 </script>
