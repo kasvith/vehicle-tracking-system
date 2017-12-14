@@ -60,14 +60,131 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */,
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(10);
+module.exports = __webpack_require__(20);
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+Vue.component('identifier-component', __webpack_require__(11));
+Vue.component('google-maps', __webpack_require__(54));
+
+var app = new Vue({
+    el: '#app'
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(12)
+}
+var normalizeComponent = __webpack_require__(17)
+/* script */
+var __vue_script__ = __webpack_require__(18)
+/* template */
+var __vue_template__ = __webpack_require__(19)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-762556ed"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/IdentifierComponent.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-762556ed", Component.options)
+  } else {
+    hotAPI.reload("data-v-762556ed", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(13);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("03578b2e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.error img[data-v-762556ed] {\n  border-color: #AA3939;\n}\n.error-box[data-v-762556ed] {\n  background-color: #AA3939;\n  margin: 5px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports) {
 
 /*
@@ -149,7 +266,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 4 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -168,7 +285,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(17)
+var listToStyles = __webpack_require__(16)
 
 /*
 type StyleObject = {
@@ -370,7 +487,40 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 5 */
+/* 16 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -475,156 +625,6 @@ module.exports = function normalizeComponent (
     exports: scriptExports,
     options: options
   }
-}
-
-
-/***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(13);
-module.exports = __webpack_require__(25);
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-Vue.component('identifier-component', __webpack_require__(14));
-Vue.component('google-maps', __webpack_require__(20));
-
-var app = new Vue({
-    el: '#app'
-});
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(15)
-}
-var normalizeComponent = __webpack_require__(5)
-/* script */
-var __vue_script__ = __webpack_require__(18)
-/* template */
-var __vue_template__ = __webpack_require__(19)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-762556ed"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/IdentifierComponent.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-762556ed", Component.options)
-  } else {
-    hotAPI.reload("data-v-762556ed", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(16);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("03578b2e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.error img[data-v-762556ed] {\n  border-color: #AA3939;\n}\n.error-box[data-v-762556ed] {\n  background-color: #AA3939;\n  margin: 5px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-/**
- * Translates the list format produced by css-loader into something
- * easier to manipulate.
- */
-module.exports = function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = {
-      id: parentId + ':' + i,
-      css: css,
-      media: media,
-      sourceMap: sourceMap
-    }
-    if (!newStyles[id]) {
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
 }
 
 
@@ -861,18 +861,57 @@ if (false) {
 
 /***/ }),
 /* 20 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(21)
+  __webpack_require__(55)
 }
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(17)
 /* script */
-var __vue_script__ = __webpack_require__(23)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(24)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -912,17 +951,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 21 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(22);
+var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("6313bbae", content, false);
+var update = __webpack_require__(15)("6313bbae", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -938,10 +977,10 @@ if(false) {
 }
 
 /***/ }),
-/* 22 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(undefined);
+exports = module.exports = __webpack_require__(14)(undefined);
 // imports
 
 
@@ -952,11 +991,13 @@ exports.push([module.i, "\n.google-map[data-v-23990a86] {\n  background: gray;\n
 
 
 /***/ }),
-/* 23 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -977,17 +1018,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		name: { required: true },
 		width: { Number: Number },
 		height: { Number: Number },
-		add_entry: { required: true }
+		add_entry: { required: true },
+		add_entry_endpoint: { String: String },
+		locations: { type: Array },
+		zoom: { type: Number, default: 7 }
 	},
 	data: function data() {
 		return {
 			infoWindow: null,
 			map: null,
 			markers: [],
+			location_marker: false,
 			locationEntry: {},
-			lat: '',
-			lng: '',
+			lat: null,
+			lng: null,
 			note: '',
+			location: '',
+			geocoder: null,
 			styles: {
 				width: this.get_width(),
 				height: this.get_height()
@@ -1003,11 +1050,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		var element = document.getElementById(this.map_name);
 		var options = {
-			zoom: 14,
+			zoom: this.zoom,
 			center: new google.maps.LatLng(7.292501, 80.634192)
 		};
+
 		this.map = new google.maps.Map(element, options);
 		this.infoWindow = new google.maps.InfoWindow();
+		this.geocoder = new google.maps.Geocoder();
+
+		if (this.add_entry === true) {
+			this.geoLocation();
+		} else {
+			this.renderAll();
+		}
 	},
 
 	methods: {
@@ -1017,9 +1072,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		get_height: function get_height() {
 			return this.height + 'px';
 		},
-		addEntry: function addEntry() {},
-		geoLocation: function geoLocation() {
+		addEntry: function addEntry() {
+			if (this.lat == null || this.lng == null) {
+				alert('Please select the location');
+				event.preventDefault();
+			}
+		},
+		renderAll: function renderAll() {
 			var _this = this;
+
+			if (this.locations) {
+				//this.locations = JSON.parse(this.locations)
+				this.locations.forEach(function (location) {
+					var pos = {
+						lat: location.lat,
+						lng: location.lng
+					};
+
+					var marker = _this.renderMarker(pos, location.created_at);
+					var content = '<div id="content">' + location.note + '</div>';
+					var infowindow = new google.maps.InfoWindow();
+					google.maps.event.addListener(marker, 'click', function (marker, content, infowindow) {
+						return function () {
+							infowindow.setContent(content);
+							infowindow.open(this.map, marker);
+						};
+					}(marker, content, infowindow));
+				});
+			}
+		},
+		geoLocation: function geoLocation() {
+			var _this2 = this;
 
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function (position) {
@@ -1027,25 +1110,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
 					};
+					_this2.map.setCenter(pos);
 
-					_this.map.setCenter(pos);
-					_this.renderMarker(pos, true);
-				}, function (err) {});
+					if (_this2.location_marker) {
+						var latlng = new google.maps.LatLng(pos.lat, pos.lng);
+						_this2.location_marker.setPosition(latlng);
+						_this2.getLocationName(pos);
+						return;
+					}
+
+					_this2.location_marker = _this2.renderMarker(pos, true);
+					_this2.location_marker.addListener('dragend', function (e) {
+						_this2.getLocationName(e.latLng);
+					});
+					_this2.getLocationName(pos);
+				}, function (err) {
+					alert('something went wrong');
+				});
 			} else {
 				this.handleLocationError(false, this.infoWindow, this.map.getCenter());
 			}
 		},
+		getLocationName: function getLocationName(location) {
+			var _this3 = this;
+
+			this.lat = location.lat;
+			this.lng = location.lng;
+			this.geocoder.geocode({ 'location': location }, function (res, stat) {
+				if (stat === 'OK') {
+					_this3.location = res[0].formatted_address;
+				} else {
+					console.log(stat);
+				}
+			});
+		},
 		renderMarker: function renderMarker(coordinate) {
-			var draggable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+			var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Current Location";
+			var draggable = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
 			var marker = new google.maps.Marker({
 				position: coordinate,
 				map: this.map,
 				draggable: draggable,
 				animation: google.maps.Animation.DROP,
-				title: 'Current Location'
+				title: title
 			});
+
 			this.markers.push(marker);
+			return marker;
 		},
 		handleLocationError: function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 			this.infoWindow.setPosition(pos);
@@ -1056,7 +1168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 24 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1077,17 +1189,93 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.add_entry,
-            expression: "add_entry"
+            value: _vm.add_entry === true,
+            expression: "add_entry === true"
           }
         ],
         staticClass: "form",
-        attrs: { action: "" }
+        attrs: { action: _vm.add_entry_endpoint, method: "get" },
+        on: { submit: _vm.addEntry }
       },
       [
-        _c("input", { attrs: { type: "hidden", name: "lat", required: "" } }),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.lat,
+              expression: "lat"
+            }
+          ],
+          attrs: { type: "hidden", name: "lat", required: "" },
+          domProps: { value: _vm.lat },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.lat = $event.target.value
+            }
+          }
+        }),
         _vm._v(" "),
-        _c("input", { attrs: { type: "hidden", name: "lng", required: "" } }),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.lng,
+              expression: "lng"
+            }
+          ],
+          attrs: { type: "hidden", name: "lng", required: "" },
+          domProps: { value: _vm.lng },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.lng = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.location,
+              expression: "location"
+            }
+          ],
+          attrs: { type: "hidden", name: "location", required: "" },
+          domProps: { value: _vm.location },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.location = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.location,
+                expression: "location"
+              }
+            ],
+            staticClass: "info"
+          },
+          [_vm._v("Location : " + _vm._s(_vm.location))]
+        ),
         _vm._v(" "),
         _c("textarea", {
           staticClass: "form-control mt-1",
@@ -1102,9 +1290,9 @@ var render = function() {
         }),
         _vm._v(" "),
         _c(
-          "button",
+          "a",
           {
-            staticClass: "btn btn-primary",
+            staticClass: "btn btn-success",
             on: {
               click: function($event) {
                 _vm.geoLocation()
@@ -1112,7 +1300,11 @@ var render = function() {
             }
           },
           [_vm._v("Get current location")]
-        )
+        ),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _vm._v("Add new entry")
+        ])
       ]
     )
   ])
@@ -1126,12 +1318,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-23990a86", module.exports)
   }
 }
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

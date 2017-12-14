@@ -26,12 +26,13 @@
         <div class="content">
             <div id="app">
                 <identifier-component action="/page/to/action" method="get"></identifier-component>
-                <google-maps name="loc" width="400" height="300" add_entry="true"></google-maps>
+                <google-maps name="loc" width="400" height="300" :locations="{{  $locations }}" add_entry="false" add_entry_endpoint="some/page"></google-maps>
             </div>
 
 
         </div>
     </div>
+
 
     @include('partials.googlemaps')
     <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
