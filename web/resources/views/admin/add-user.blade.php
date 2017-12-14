@@ -25,24 +25,24 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputName">Name</label>
-                            <input type="Name" class="form-control" id="exampleInputName" placeholder="Enter User Name" name="name">
+                            <label for="exampleInputNIC">NIC Number</label>
+                            <input type="text" class="form-control" id="exampleInputNICnumber" placeholder="NIC Number" name="nic" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputNIC">NIC Number</label>
-                            <input type="NICnumber" class="form-control" id="exampleInputNICnumber" placeholder="NIC Number" name="nic">
+                            <label for="exampleInputName">Name</label>
+                            <input type="text" class="form-control" id="exampleInputName" placeholder="Enter User Name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName">E-mail</label>
-                            <input type="Email" class="form-control" id="exampleInputEmail" placeholder="Enter User E-mail" name="email">
+                            <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter User E-mail" name="email">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName">Address</label>
-                            <input type="Address" class="form-control" id="exampleInputAddress" placeholder="Enter User Address" name="address">
+                            <input type="text" class="form-control" id="exampleInputAddress" placeholder="Enter User Address" name="address">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">User Image</label>
-                            <input type="file" id="exampleInputFile">
+                            <input type="file" id="exampleInputFile" name="profile">
 
                             <p class="help-block">Use .xxx images only.</p>
                         </div>
