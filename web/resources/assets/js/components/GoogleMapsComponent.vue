@@ -63,13 +63,14 @@ export default {
 	    this.infoWindow = new google.maps.InfoWindow;
 	    this.geocoder = new google.maps.Geocoder;
 
-	    var centerControlDiv = document.createElement('div');
-        var centerControl = new this.CenterControl(centerControlDiv, this.map);
-
-        centerControlDiv.index = 1;
-        this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+	    
 
 	    if (this.addEntryEndpoint) {
+	    	var centerControlDiv = document.createElement('div');
+	        var centerControl = new this.CenterControl(centerControlDiv, this.map);
+
+	        centerControlDiv.index = 1;
+	        this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 	    	this.geoLocation()
 	    }else{
 	    	this.renderAll()

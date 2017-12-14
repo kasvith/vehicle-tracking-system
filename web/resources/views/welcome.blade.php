@@ -26,7 +26,7 @@
         <div class="content">
             <div id="app">
                 <identifier-component action="/page/to/action" method="get"></identifier-component>
-                <google-maps name="loc" width="400" height="300" :locations="{{  $locations }}" add-entry-endpoint="/page"></google-maps>
+                <google-maps name="loc" height="300" add-entry-endpoint="/somepage" :locations="{{  $locations }}"></google-maps>
             </div>
 
 
