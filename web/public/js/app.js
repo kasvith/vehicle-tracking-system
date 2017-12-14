@@ -60,131 +60,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */,
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(10);
-module.exports = __webpack_require__(20);
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-Vue.component('identifier-component', __webpack_require__(11));
-Vue.component('google-maps', __webpack_require__(54));
-
-var app = new Vue({
-    el: '#app'
-});
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(12)
-}
-var normalizeComponent = __webpack_require__(17)
-/* script */
-var __vue_script__ = __webpack_require__(18)
-/* template */
-var __vue_template__ = __webpack_require__(19)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-762556ed"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/IdentifierComponent.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-762556ed", Component.options)
-  } else {
-    hotAPI.reload("data-v-762556ed", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(13);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(15)("03578b2e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(14)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.error img[data-v-762556ed] {\n  border-color: #AA3939;\n}\n.error-box[data-v-762556ed] {\n  background-color: #AA3939;\n  margin: 5px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 14 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -266,7 +149,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 15 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -285,7 +168,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(16)
+var listToStyles = __webpack_require__(17)
 
 /*
 type StyleObject = {
@@ -487,40 +370,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-/**
- * Translates the list format produced by css-loader into something
- * easier to manipulate.
- */
-module.exports = function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = {
-      id: parentId + ':' + i,
-      css: css,
-      media: media,
-      sourceMap: sourceMap
-    }
-    if (!newStyles[id]) {
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
-}
-
-
-/***/ }),
-/* 17 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -625,6 +475,156 @@ module.exports = function normalizeComponent (
     exports: scriptExports,
     options: options
   }
+}
+
+
+/***/ }),
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(13);
+module.exports = __webpack_require__(25);
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+Vue.component('identifier-component', __webpack_require__(14));
+Vue.component('google-maps', __webpack_require__(20));
+
+var app = new Vue({
+    el: '#app'
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(15)
+}
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(18)
+/* template */
+var __vue_template__ = __webpack_require__(19)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-762556ed"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/IdentifierComponent.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-762556ed", Component.options)
+  } else {
+    hotAPI.reload("data-v-762556ed", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(16);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("03578b2e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.error img[data-v-762556ed] {\n  border-color: #AA3939;\n}\n.error-box[data-v-762556ed] {\n  background-color: #AA3939;\n  margin: 5px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
 }
 
 
@@ -861,57 +861,18 @@ if (false) {
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(55)
+  __webpack_require__(21)
 }
-var normalizeComponent = __webpack_require__(17)
+var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(23)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(24)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -951,17 +912,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(56);
+var content = __webpack_require__(22);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(15)("6313bbae", content, false);
+var update = __webpack_require__(4)("6313bbae", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -977,10 +938,10 @@ if(false) {
 }
 
 /***/ }),
-/* 56 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(14)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -991,11 +952,17 @@ exports.push([module.i, "\n.google-map[data-v-23990a86] {\n  background: gray;\n
 
 
 /***/ }),
-/* 57 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1018,10 +985,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		name: { required: true },
 		width: { Number: Number },
 		height: { Number: Number },
-		add_entry: { required: true },
-		add_entry_endpoint: { String: String },
+		addEntryEndpoint: { String: String },
 		locations: { type: Array },
-		zoom: { type: Number, default: 7 }
+		zoom: { type: Number, default: 8 }
 	},
 	data: function data() {
 		return {
@@ -1033,10 +999,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			lat: null,
 			lng: null,
 			note: '',
-			location: '',
+			location: 'Locating...',
 			geocoder: null,
 			styles: {
-				width: this.get_width(),
 				height: this.get_height()
 			}
 		};
@@ -1058,7 +1023,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.infoWindow = new google.maps.InfoWindow();
 		this.geocoder = new google.maps.Geocoder();
 
-		if (this.add_entry === true) {
+		var centerControlDiv = document.createElement('div');
+		var centerControl = new this.CenterControl(centerControlDiv, this.map);
+
+		centerControlDiv.index = 1;
+		this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+		if (this.addEntryEndpoint) {
 			this.geoLocation();
 		} else {
 			this.renderAll();
@@ -1072,8 +1043,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		get_height: function get_height() {
 			return this.height + 'px';
 		},
+		CenterControl: function CenterControl(controlDiv, map) {
+			// Set CSS for the control border.
+			var controlUI = document.createElement('div');
+			controlUI.style.backgroundColor = '#fff';
+			controlUI.style.border = '2px solid #fff';
+			controlUI.style.borderRadius = '3px';
+			controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+			controlUI.style.cursor = 'pointer';
+			controlUI.style.margin = '5px';
+			controlUI.style.textAlign = 'center';
+			controlUI.title = 'Click to find your location';
+			controlDiv.appendChild(controlUI);
+
+			// Set CSS for the control interior.
+			var controlText = document.createElement('div');
+			controlText.style.color = 'rgb(25,25,25)';
+			controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+			controlText.style.fontSize = '16px';
+			controlText.style.lineHeight = '38px';
+			controlText.style.paddingLeft = '5px';
+			controlText.style.paddingRight = '5px';
+			controlText.innerHTML = '<i class="fa fa-location-arrow" aria-hidden="true"></i> My Location';
+			controlUI.appendChild(controlText);
+
+			// Setup the click event listeners: simply set the map to Chicago.
+			controlUI.addEventListener('click', this.geoLocation);
+		},
 		addEntry: function addEntry() {
-			if (this.lat == null || this.lng == null) {
+			if (this.lat == null || this.lng == null || this.location == 'Locating...') {
 				alert('Please select the location');
 				event.preventDefault();
 			}
@@ -1087,11 +1085,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					var pos = {
 						lat: location.lat,
 						lng: location.lng
-					};
 
-					var marker = _this.renderMarker(pos, location.created_at);
+						// we will need to change this later
+					};var marker = _this.renderMarker(pos, location.created_at, false);
 					var content = '<div id="content">' + location.note + '</div>';
 					var infowindow = new google.maps.InfoWindow();
+
 					google.maps.event.addListener(marker, 'click', function (marker, content, infowindow) {
 						return function () {
 							infowindow.setContent(content);
@@ -1119,9 +1118,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						return;
 					}
 
-					_this2.location_marker = _this2.renderMarker(pos, true);
+					_this2.location_marker = _this2.renderMarker(pos, 'Current Location', true);
 					_this2.location_marker.addListener('dragend', function (e) {
-						_this2.getLocationName(e.latLng);
+						var pos = {
+							lat: e.latLng.lat(),
+							lng: e.latLng.lng()
+						};
+						_this2.getLocationName(pos);
 					});
 					_this2.getLocationName(pos);
 				}, function (err) {
@@ -1136,6 +1139,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			this.lat = location.lat;
 			this.lng = location.lng;
+			this.location = 'Locating...';
 			this.geocoder.geocode({ 'location': location }, function (res, stat) {
 				if (stat === 'OK') {
 					_this3.location = res[0].formatted_address;
@@ -1144,10 +1148,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			});
 		},
-		renderMarker: function renderMarker(coordinate) {
-			var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Current Location";
-			var draggable = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
+		renderMarker: function renderMarker(coordinate, title, draggable) {
 			var marker = new google.maps.Marker({
 				position: coordinate,
 				map: this.map,
@@ -1163,12 +1164,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.infoWindow.setPosition(pos);
 			this.infoWindow.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
 			infoWindow.open(this.map);
+		},
+		clear: function clear() {
+			this.note = '';
+			this.location = 'Locating...';
+			this.geoLocation();
 		}
 	}
 });
 
 /***/ }),
-/* 58 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1176,140 +1182,157 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", {
-      staticClass: "google-map",
-      style: _vm.styles,
-      attrs: { id: _vm.map_name }
-    }),
-    _vm._v(" "),
     _c(
-      "form",
+      "div",
       {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.add_entry === true,
-            expression: "add_entry === true"
-          }
-        ],
-        staticClass: "form",
-        attrs: { action: _vm.add_entry_endpoint, method: "get" },
-        on: { submit: _vm.addEntry }
+        staticClass: "google-map",
+        style: _vm.styles,
+        attrs: { id: _vm.map_name }
       },
-      [
-        _c("input", {
-          directives: [
+      [_c("div", [_vm._v("btn")])]
+    ),
+    _vm._v(" "),
+    _vm.addEntryEndpoint
+      ? _c("div", [
+          _c(
+            "form",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.lat,
-              expression: "lat"
-            }
-          ],
-          attrs: { type: "hidden", name: "lat", required: "" },
-          domProps: { value: _vm.lat },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.lat = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.lng,
-              expression: "lng"
-            }
-          ],
-          attrs: { type: "hidden", name: "lng", required: "" },
-          domProps: { value: _vm.lng },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.lng = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.location,
-              expression: "location"
-            }
-          ],
-          attrs: { type: "hidden", name: "location", required: "" },
-          domProps: { value: _vm.location },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.location = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.location,
-                expression: "location"
-              }
-            ],
-            staticClass: "info"
-          },
-          [_vm._v("Location : " + _vm._s(_vm.location))]
-        ),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control mt-1",
-          attrs: {
-            name: "note",
-            id: "",
-            cols: "60",
-            rows: "8",
-            placeholder: "Take a note",
-            required: ""
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-success",
-            on: {
-              click: function($event) {
-                _vm.geoLocation()
-              }
-            }
-          },
-          [_vm._v("Get current location")]
-        ),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-primary" }, [
-          _vm._v("Add new entry")
+              staticClass: "form",
+              attrs: { action: _vm.addEntryEndpoint, method: "get" },
+              on: { submit: _vm.addEntry }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.lat,
+                    expression: "lat"
+                  }
+                ],
+                attrs: { type: "hidden", name: "lat", required: "" },
+                domProps: { value: _vm.lat },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.lat = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.lng,
+                    expression: "lng"
+                  }
+                ],
+                attrs: { type: "hidden", name: "lng", required: "" },
+                domProps: { value: _vm.lng },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.lng = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.location,
+                    expression: "location"
+                  }
+                ],
+                attrs: { type: "hidden", name: "location", required: "" },
+                domProps: { value: _vm.location },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.location = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-1 m-1 text-center" }, [
+                _c("h6", [
+                  _vm._v("Location : "),
+                  _c("b", [_vm._v(" " + _vm._s(_vm.location) + " ")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.note,
+                    expression: "note"
+                  }
+                ],
+                staticClass: "form-control p-1",
+                attrs: {
+                  name: "note",
+                  rows: "8",
+                  placeholder: "Take a note",
+                  required: ""
+                },
+                domProps: { value: _vm.note },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.note = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center p-1 m-1" }, [
+                _vm._m(0, false, false),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.clear($event)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-eraser" }), _vm._v(" Clear")]
+                )
+              ])
+            ]
+          )
         ])
-      ]
-    )
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "btn btn-primary" }, [
+      _c("i", { staticClass: "fa fa-plus" }),
+      _vm._v(" Add Entry")
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -1318,6 +1341,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-23990a86", module.exports)
   }
 }
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
