@@ -12,7 +12,12 @@
  */
 
 Route::get('/', function () {
-	return view('welcome');
+	$locations = [
+		['lat' => 7.234, 'lng' => 78.2345555, 'created_at' => '2017-08-10', 'note' => 'some'],
+		['lat' => 7.234, 'lng' => 50.2345555, 'created_at' => '2017-06-10', 'note' => 'some note'],
+	];
+	$locations = json_encode($locations);
+	return view('welcome')->with('locations', $locations);
 });
 Route::get('/admin', function (){
 	return view('admin.master');
