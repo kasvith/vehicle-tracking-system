@@ -20,6 +20,9 @@ class AdminSeeder extends Seeder
 	        'address' => 'Somewhere I belong',
 	        'created_at' => now(),
 	        'updated_at' => now(),
+	        'image' => '_admin/img/avatar.png',
+	        'last_login' => now(),
+	        'last_login_ip' => '127.0.0.1'
         ]);
     }
 }

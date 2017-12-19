@@ -15,9 +15,10 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-    	if ($request->user()->type == 'admin')
+    	if (auth()->user() && auth()->user()->type == 'admin')
 		    return $next($request);
 
-    	return abort(403);
+    	session()->flash('unauthorized', true);
+    	return redirect('/admin/login');
     }
 }

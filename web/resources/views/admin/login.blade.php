@@ -9,18 +9,60 @@
     <div class="login-logo">
         <a href="/"><b>VIS</b>admin</a>
     </div>
+
+    @if(session('unauthorized'))
+        @component('admin.partials.alert')
+            @slot('id')
+                danger-alert
+            @endslot
+
+            @slot('type')
+                danger
+            @endslot
+
+            @slot('title')
+                Permission Denied
+            @endslot
+
+            @slot('content')
+                You are not authorized to view this
+            @endslot
+        @endcomponent
+    @endif
+
+    @if(isset($errors) && count($errors) > 0)
+        @component('admin.partials.alert')
+            @slot('id')
+                danger-alert
+            @endslot
+
+            @slot('type')
+                danger
+            @endslot
+
+            @slot('title')
+                Permission Denied
+            @endslot
+
+            @slot('content')
+                Credentials not match
+        @endslot
+    @endcomponent
+@endif
+
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in</p>
 
         <form action="/admin/login" method="post">
+            {{ csrf_field() }}
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="nic" placeholder="NIC" required>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input type="text" class="form-control" name="nic" placeholder="NIC">
+                <span class="fa fa-id-card form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <span class="fa fa-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
@@ -53,6 +95,10 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+    });
+
+    $("#danger-alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#danger-alert").slideUp(500);
     });
 </script>
 </body>
