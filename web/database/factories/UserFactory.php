@@ -21,5 +21,14 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+	    'created_at' => $faker->dateTime(),
+	    'updated_at' => $faker->dateTime(),
+	    'type' => $faker->randomElement(['admin', 'officer']),
+	    'gender' => $faker->randomElement(['male', 'female']),
+	    'nic' => $faker->unique()->isbn13,
+	    'image' => '_admin/img/avatar.png',
+	    'address' => $faker->address,
+	    'last_login' => $faker->dateTime(),
+	    'last_login_ip' => $faker->ipv4,
     ];
 });

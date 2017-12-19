@@ -12,25 +12,33 @@
  */
 
 Route::get('/', function () {
-	$locations = [
-		['lat' => 7.234, 'lng' => 78.2345555, 'created_at' => '2017-08-10', 'note' => 'some'],
-		['lat' => 7.234, 'lng' => 50.2345555, 'created_at' => '2017-06-10', 'note' => 'some note'],
-	];
-	$locations = json_encode($locations);
-	return view('welcome')->with('locations', $locations);
-});
-Route::get('/admin', function () {
-	return view('admin.master');
+	return view('welcome');
 });
 
-Route::get('admin/create/user', function () {
-	return view('admin.add-user');
-});
-//temp
-Route::get('admin/create/owner', function () {
-	return view('admin.add-owner');
+
+Route::group(['prefix' => 'admin'], function () {
+	//dashboard
+	Route::get('/', 'AdminController@index')->name('admin.dash');
+
+	//auth
+	Route::get('/login', 'AdminController@showLogin')->name('admin.login');
+	Route::post('/login', 'AdminController@login')->name('admin.dologin');
+	Route::post('/logout', 'AdminController@logout')->name('admin.logout');
+
+	//users
+	Route::get('/users', 'UserController@index')->name('admin.users'); // show index
+	Route::get('/users/create', 'UserController@create')->name('admin.users.create'); // show create a new user
+	Route::post('/users', 'UserController@store')->name('admin.users.store'); // save a new user
+	Route::delete('/users/{user}', 'UserController@destroy')->name('admin.users.delete'); // delete an user
+	Route::get('/users/edit/{user}', 'UserController@edit')->name('admin.users.edit'); // show edit form
+	Route::post('/users/edit/{user}', 'UserController@update')->name('admin.users.update'); // update edited user
+	Route::get('/users/{user}', 'UserController@show')->name('admin.users.show'); // show user profile
+	Route::get('/users/log/{user}', 'UserController@showLog')->name('admin.users.log'); // show user log
+	Route::get('/profile', 'UserController@showProfile')->name('admin.users.profile'); // show current user profile
+	Route::get('/settings', 'UserController@showSettings')->name('admin.users.settings'); // show settings page
+	Route::post('/settings', 'UserController@saveSettings')->name('admin.users.settings.save'); // save settings
+	Route::post('/settings/password', 'UserController@updatePassword')->name('admin.users.settings.password.update'); // update password
+	Route::get('/users/ajax/search', 'UserController@searchAJAX')->name('admin.users.search.ajax'); // search ajax
+
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type'
+        'name', 'email', 'password', 'type', 'last_login', 'image', 'nic', 'address', 'last_login', 'last_login_ip'
     ];
 
     /**
@@ -26,4 +26,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	public function isOnline()
+	{
+		return cache()->has('user-is-online-' . $this->id);
+	}
+
+	public function locationEntries(){
+		return $this->hasMany(LocationEntry::class);
+	}
+
+	public function logs($limit = 30){
+		return $this->hasMany(UserActivityLog::class)->orderBy('created_at', 'desc')->limit($limit);
+	}
+
+	public function allLogs(){
+		return $this->hasMany(UserActivityLog::class)->orderBy('created_at', 'desc');
+	}
 }

@@ -11,11 +11,12 @@
 <!-- Ionicons -->
 <link rel="stylesheet" href="{{ asset('_admin/bower_components/Ionicons/css/ionicons.min.css') }}">
 <!-- Theme style -->
-<link rel="stylesheet" href="{{ asset('_admin/css/adminlte.min.css') }}">
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-      page. However, you can choose any other skin. Make sure you
-      apply the skin class to the body tag so the changes take effect. -->
+
 <link rel="stylesheet" href="{{ asset('_admin/css/skins/skin-blue-light.min.css') }}">
+<link rel="stylesheet" href="{{ asset('_admin/plugins/iCheck/all.css') }}">
+<link rel="stylesheet" href="{{ asset('_admin/bower_components/select2/dist/css/select2.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('_admin/css/adminlte.min.css') }}">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,4 +28,12 @@
 <!-- Google Font -->
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<style>
+    .overlay{
+        position: absolute;
+        top: 50px;
+        right: 30px;
+        z-index: 60000;
+    }
+</style>
 @yield('header-content')
