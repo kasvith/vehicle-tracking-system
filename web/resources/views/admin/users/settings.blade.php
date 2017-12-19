@@ -4,10 +4,6 @@
 
 @section('optional-title', 'change your preferences')
 
-@section('header-content')
-    @include('admin.partials.styles.file-upload-preview')
-@endsection
-
 @section('content')
     @include('admin.partials.callouts')
     <div class="row">

@@ -1,10 +1,8 @@
 @extends('admin.master')
 
 @section('page-title', 'Add new user')
+
 @section('optional-title', 'You can add a new user to the system')
-@section('header-content')
-    @include('admin.partials.styles.file-upload-preview')
-@endsection
 
 @section('content')
     <div class="row">
@@ -77,13 +75,6 @@
 @section('user-scripts')
     <script>
         $(document).ready(function(){
-            $('.has-error').click(function () {
-                $(this).removeClass('has-error');
-                $(this).children('.help-block').remove();
-            });
-
-            $('.select2').select2();
-
             $('#gender').on('change', function (val) {
                 if ($('#inputFile').get(0).files.length === 0) {
                     var src = '/_admin/img/avatar.png';

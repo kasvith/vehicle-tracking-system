@@ -12,6 +12,13 @@
 <script src="{{ asset('_admin/bower_components/jquery-ui/jquery-ui.js') }}"></script>
 <script>
     $(document).ready(function () {
+        $('.has-error').click(function () {
+            $(this).removeClass('has-error');
+            $(this).children('.help-block').remove();
+        });
+
+        $('.select2').select2();
+
         $('.overlay').children('.callout').each(function (i, elem) {
             $(this).click(function () {
                $(this).fadeOut(300, function () {

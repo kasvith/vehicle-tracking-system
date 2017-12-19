@@ -40,5 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/settings/password', 'UserController@updatePassword')->name('admin.users.settings.password.update'); // update password
 	Route::get('/users/ajax/search', 'UserController@searchAJAX')->name('admin.users.search.ajax'); // search ajax
 
+	//owners
+	Route::get('/owners/create', 'OwnerController@create')->name('admin.owners.create');
 });
 

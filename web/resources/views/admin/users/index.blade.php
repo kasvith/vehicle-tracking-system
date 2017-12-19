@@ -4,35 +4,6 @@
 
 @section('optional-title', 'manage all users')
 
-@section('header-content')
-    <style>
-        .ui-autocomplete {
-            position: absolute;
-            z-index: 1000;
-            cursor: default;
-            padding: 0;
-            margin-top: 2px;
-            list-style: none;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-        .ui-autocomplete > li {
-            padding: 3px 20px;
-        }
-
-        .ui-autocomplete > li.ui-state-focus {
-            background-color: #DDD;
-        }
-
-        .ui-helper-hidden-accessible {
-            display: none;
-        }
-    </style>
-@endsection
-
 @section('content')
     @include('admin.partials.callouts')
 
