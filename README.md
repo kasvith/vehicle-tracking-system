@@ -16,4 +16,5 @@ A simple vehicle tracking system
 - Run `composer install`
 - Run `npm install`
 - Then run `php artisan migrate'
+- Run `php artisan storage:link`
 - Then `php artisan serve`
