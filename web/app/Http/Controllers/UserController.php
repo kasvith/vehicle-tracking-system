@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\UserRegistered;
 use App\User;
-use App\UserActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -82,7 +81,11 @@ class UserController extends Controller
 
 		$user->save();
 
-		Mail::to($user->email)->send(new UserRegistered($user, $password));
+		try{
+			Mail::to($user->email)->send(new UserRegistered($user, $password));
+		}catch (\Exception $e){
+			logger('Sending mail failed');
+		}
 
 		log_entry(auth()->user() , 'User <b>' . $user->name . '</b> was created');
 
