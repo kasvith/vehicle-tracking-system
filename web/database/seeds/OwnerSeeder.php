@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class OwnerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AdminSeeder::class);
-		$this->call(UserSeeder::class);
-		$this->call(OwnerSeeder::class);
+	    factory(App\Owner::class, 150)->create();
     }
 }

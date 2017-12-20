@@ -4,10 +4,6 @@
 
 @section('optional-title', 'Edit details of user')
 
-@section('header-content')
-    @include('admin.partials.styles.file-upload-preview')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-6">

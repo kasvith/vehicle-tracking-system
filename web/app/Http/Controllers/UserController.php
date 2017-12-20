@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\UserRegistered;
 use App\User;
-use App\UserActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -26,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-    	$users = User::where('id' , '!=', auth()->user()->id)->paginate(25);
+    	$users = User::where('id' , '!=', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(25);
     	$users->withPath('users');
         return view('admin.users.index', compact('users'));
     }
@@ -82,11 +81,15 @@ class UserController extends Controller
 
 		$user->save();
 
-		Mail::to($user->email)->send(new UserRegistered($user, $password));
+		try{
+			Mail::to($user->email)->send(new UserRegistered($user, $password));
+		}catch (\Exception $e){
+			logger('Sending mail failed');
+		}
 
 		log_entry(auth()->user() , 'User <b>' . $user->name . '</b> was created');
 
-		return redirect()->to('/admin/users')->with(
+		return redirect()->route('admin.users')->with(
 			callout('Adding user success', 'success', 'User added successfully. Email sent with password')
 		);
     }
@@ -129,7 +132,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
     	if (!$user){
-		    return redirect()->to('/admin/users')->with(
+		    return redirect()->route('admin.users')->with(
 		    	callout('Updating user failed', 'danger','User update failed.')
 		    );
 	    }

@@ -4,35 +4,6 @@
 
 @section('optional-title', 'manage all users')
 
-@section('header-content')
-    <style>
-        .ui-autocomplete {
-            position: absolute;
-            z-index: 1000;
-            cursor: default;
-            padding: 0;
-            margin-top: 2px;
-            list-style: none;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-        .ui-autocomplete > li {
-            padding: 3px 20px;
-        }
-
-        .ui-autocomplete > li.ui-state-focus {
-            background-color: #DDD;
-        }
-
-        .ui-helper-hidden-accessible {
-            display: none;
-        }
-    </style>
-@endsection
-
 @section('content')
     @include('admin.partials.callouts')
 
@@ -65,8 +36,8 @@
                     <table class="table table-hover">
                             <tr>
                                 <th>Name</th>
-                                <th>Type</th>
                                 <th>NIC</th>
+                                <th>Type</th>
                                 <th>Email</th>
                                 <th>Gender</th>
                                 <th>Address</th>
@@ -74,18 +45,18 @@
                             </tr>
                             @foreach($users as $user)
                                 <tr>
+
                                     <td><span class="info"><i class="fa fa-1x fa-circle text-{{ $user->isOnline() ? 'success' : 'danger' }}" aria-hidden="true"></i></span> <a href="{{ route('admin.users.show', ['user' => $user->id]) }}">{{ $user->name }}</a></td>
+                                    <td>{{ $user->nic }}</td>
                                     <td>
                                         <span class="label label-{{ $user->type == 'admin'? 'success' : 'info'}}">{{ strtoupper($user->type) }}</span>
                                     </td>
-                                    <td>{{ $user->nic }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <span class="label label-{{ $user->gender == 'male'? 'danger' : 'warning'}}">{{ strtoupper($user->gender[0]) }}</span>
                                     </td>
                                     <td>{{ $user->address }}</td>
                                     <td>
-
                                         <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}" class="btn btn-sm btn-flat"><i class="fa fa-edit"></i></a>
                                         <a href="javascript:if(confirm('Do you really want to delete this user ?')){document.getElementById('uuid{!! $user->id !!}').submit();}"><span class="btn btn-sm btn-flat"><i class="fa fa-trash"></i></span></a>
                                         <form id="uuid{{ $user->id }}" action="{{ route('admin.users.delete', ['user' => $user->id]) }}" method="post">
