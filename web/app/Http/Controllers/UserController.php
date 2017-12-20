@@ -89,7 +89,7 @@ class UserController extends Controller
 
 		log_entry(auth()->user() , 'User <b>' . $user->name . '</b> was created');
 
-		return redirect()->to('/admin/users')->with(
+		return redirect()->route('admin.users')->with(
 			callout('Adding user success', 'success', 'User added successfully. Email sent with password')
 		);
     }
@@ -132,7 +132,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
     	if (!$user){
-		    return redirect()->to('/admin/users')->with(
+		    return redirect()->route('admin.users')->with(
 		    	callout('Updating user failed', 'danger','User update failed.')
 		    );
 	    }
