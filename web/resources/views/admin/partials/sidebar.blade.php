@@ -25,7 +25,7 @@
             <li class="{{ active_route('admin.users') }} {{ active_route('admin.users.*') }}"><a href="{{ route('admin.users') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
 
             <li class="header">VEHICLE MANAGEMENT</li>
-            <li class="{{ active_route('admin.owners') }} {{ active_route('admin.owners.*') }}"><a href=""><i class="fa fa-address-card-o"></i> <span>Owners</span></a></li>
+            <li class="{{ active_route('admin.owners') }} {{ active_route('admin.owners.*') }}"><a href="{{ route('admin.owners') }}"><i class="fa fa-address-card-o"></i> <span>Owners</span></a></li>
             <li class="{{ active_route('admin.vehicles') }}"><a href="#"><i class="fa fa-automobile"></i> <span>Vehicles</span></a></li>
 
             <li class="header">MANAGE</li>

@@ -23,7 +23,6 @@
                         <form action="#" method="get">
                             <div class="input-group input-group-sm" style="width: 300px;">
                                 <input type="text" id="search" name="q" class="form-control pull-right autocomplete" autocomplete="false" placeholder="Search...">
-
                                 <div class="input-group-btn">
                                     <span class="btn btn-default"><i class="fa fa-search"></i></span>
                                 </div>
@@ -46,7 +45,7 @@
                         
                         @foreach($owners as $owner)
                             <tr>
-                                <td>{{ $owner->nic }}</td>
+                                <td><a href="{{ route('admin.owners.show', ['owner' => $owner->id]) }}">{{ $owner->nic }}</a></td>
                                 <td>{{ ucfirst($owner->first_name) }}</td>
                                 <td>{{ ucfirst($owner->last_name) }}</td>
                                 <td>
@@ -55,9 +54,9 @@
                                 <td>{{ $owner->district }}</td>
                                 <td>{{ $owner->province }}</td>
                                 <td>
-                                    <a href="{{ route('admin.users.edit', ['user' => $owner->id]) }}" class="btn btn-sm btn-flat"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ route('admin.owners.edit', ['owner' => $owner->id]) }}" class="btn btn-sm btn-flat"><i class="fa fa-edit"></i></a>
                                     <a href="javascript:if(confirm('Do you really want to delete this owner ?')){document.getElementById('uuid{!! $owner->id !!}').submit();}"><span class="btn btn-sm btn-flat"><i class="fa fa-trash"></i></span></a>
-                                    <form id="uuid{{ $owner->id }}" action="{{ route('admin.users.delete', ['user' => $owner->id]) }}" method="post">
+                                    <form id="uuid{{ $owner->id }}" action="{{ route('admin.owners.delete', ['user' => $owner->id]) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
                                     </form>
@@ -84,16 +83,18 @@
                 minLength: 2,
                 source: function( request, response ) {
                     $.ajax({
-                        url: '/admin/users/ajax/search',
+                        url: '/admin/owners/ajax/search',
                         dataType: "json",
                         data: { q: request.term},
                         success: function( data ) {
                             response( $.map( data, function( item ) {
                                 return {
-                                    name: item.name,
+                                    firstName: item.first_name,
+                                    lastName: item.last_name,
                                     id: item.id,
                                     nic: item.nic,
-                                    email: item.email,
+                                    district: item.district,
+                                    province: item.province
                                 }
                             }));
                         }
@@ -103,12 +104,12 @@
                     return false;
                 },
                 select: function( event, ui ) {
-                    window.location.href = location.protocol + '//' + location.host + '/admin/users/' + ui.item.id;
+                    window.location.href = location.protocol + '//' + location.host + '/admin/owners/' + ui.item.id;
                 }
             }).data( "ui-autocomplete" )._renderItem = function(ul, item) {
-                var inner_html = '<a href="' + location.protocol + '//' + location.host + '/admin/users/' + item.id + '" class="text-black">' +
-                    '<div class="row"><div class="details"><b>'+ item.name +'</b><br><i>'+ item.email +'</i><br>' +
-                    '<i>' + item.nic + '</i></div></div></a>';
+                var inner_html = '<a href="' + location.protocol + '//' + location.host + '/admin/owners/' + item.id + '" class="text-black">' +
+                    '<div class="row"><div class="details"><b>'+ item.firstName + ' ' + item.lastName+ '</b><br><i>'+ item.nic +'</i><br>' +
+                    '<i>' + item.district + ' ' + item.province + '</i></div></div></a>';
                 return $( "<li></li>" )
                     .data( "item.autocomplete", item )
                     .append(inner_html)

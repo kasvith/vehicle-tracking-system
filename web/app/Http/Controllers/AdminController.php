@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Owner;
 use App\User;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -14,8 +14,9 @@ class AdminController extends Controller
 
 	public function index(){
 		$users = User::count();
+		$owners = Owner::count();
 
-		return view('admin.dash', compact('users'));
+		return view('admin.dash', compact(['users', 'owners']));
 	}
 
 	public function showLogin(){

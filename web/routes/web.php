@@ -41,6 +41,13 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/users/ajax/search', 'UserController@searchAJAX')->name('admin.users.search.ajax'); // search ajax
 
 	//owners
-	Route::get('/owners/create', 'OwnerController@create')->name('admin.owners.create');
+	Route::get('/owners/create', 'OwnerController@create')->name('admin.owners.create'); // show owner create
+	Route::get('/owners', 'OwnerController@index')->name('admin.owners'); // show index of owners
+	Route::post('/owners/create', 'OwnerController@store')->name('admin.owners.store');// stores a new user
+	Route::get('/owners/ajax/search', 'OwnerController@searchAJAX')->name('admin.users.search.ajax'); // search ajax
+	Route::get('/owners/{owner}', 'OwnerController@show')->name('admin.owners.show'); // show user profile
+	Route::get('/owners/edit/{owner}', 'OwnerController@edit')->name('admin.owners.edit'); // show edit form
+	Route::delete('/owners/{owner}', 'OwnerController@destroy')->name('admin.owners.delete'); // delete an user
+	Route::post('/owners/edit/{owner}', 'OwnerController@update')->name('admin.owners.update'); // update edited user
 });
 
