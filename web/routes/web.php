@@ -39,7 +39,6 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/settings', 'UserController@saveSettings')->name('admin.users.settings.save'); // save settings
 	Route::post('/settings/password', 'UserController@updatePassword')->name('admin.users.settings.password.update'); // update password
 	Route::get('/users/ajax/search', 'UserController@searchAJAX')->name('admin.users.search.ajax'); // search ajax
-
 	//owners
 	Route::get('/owners/create', 'OwnerController@create')->name('admin.owners.create'); // show owner create
 	Route::get('/owners', 'OwnerController@index')->name('admin.owners'); // show index of owners
@@ -49,5 +48,9 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/owners/edit/{owner}', 'OwnerController@edit')->name('admin.owners.edit'); // show edit form
 	Route::delete('/owners/{owner}', 'OwnerController@destroy')->name('admin.owners.delete'); // delete an user
 	Route::post('/owners/edit/{owner}', 'OwnerController@update')->name('admin.owners.update'); // update edited user
+
+	//vehicles
+	Route::get('/vehicles', 'VehicleController@index')->name('admin.vehicles');// show all vehicles
+	Route::get('/vehicles/create', 'VehicleController@create')->name('admin.vehicles.create');// show create form
 });
 

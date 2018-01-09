@@ -13,7 +13,12 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form">
+                    {{ csrf_field() }}
                     <div class="box-body">
+                        <div class="form-group">
+                            <label for="vehicleNumber">Owner NIC</label>
+                            <input type="text" class="form-control" id="vehicleNumber" placeholder="Enter Owner ID" name="owner_id">
+                        </div>
                         <div class="form-group">
                             <label for="vehicleNumber">Vehicle Number:</label>
                             <input type="text" class="form-control" id="vehicleNumber" placeholder="Enter Vehicle Number" name="vehicle_number">
@@ -34,8 +39,10 @@
                             <label for="enguneCapacity">Chassi Number:</label>
                             <input type="text" class="form-control" id="enguneCapacity" placeholder="Enter Engine Capacity " name="engine_capacity">
                         </div>
-
-
+                        <div class="form-group">
+                            <label for="type">Type :</label>
+                            <input type="text" class="form-control" id="type" placeholder="Enter Engine Capacity " name="type">
+                        </div>
                     </div>
                     <!-- /.box-body -->
 
