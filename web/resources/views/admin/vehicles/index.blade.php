@@ -34,7 +34,7 @@
                 <div class="box-body table-responsive ">
                     <table class="table table-hover">
                         <tr>
-                            <th>Vehicle ID</th>
+                            <th>Vehicle No</th>
                             <th>Color</th>
                             <th>Type</th>
                             <th>Owner</th>
@@ -43,10 +43,10 @@
 
                         @foreach($vehicles as $vehicle)
                             <tr>
-                                <td>{{ $vehicle->vehicle_id }}</td>
+                                <td>{{ $vehicle->vehicle_number }}</td>
                                 <td>{{ $vehicle->color }}</td>
                                 <td>{{ $vehicle->type }}</td>
-                                <td>{{ $vehicle->owner }}</td>
+                                <td>{{ $vehicle->owner->first_name . ' ' . $vehicle->owner->last_name }}</td>
                                 <td>Actions</td>
                             </tr>
                         @endforeach

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
+use App\Owner;
 use App\Vehicle;
 use Illuminate\Http\Request;
 
@@ -26,6 +28,11 @@ class VehicleController extends Controller
      */
     public function create()
     {
+        if (\request('owner') && \request('owner') != null){
+            $owner = Owner::find(\request('owner'));
+            session()->flash('owner_id', $owner->nic);
+        }
+
         return view('admin.vehicles.create');
     }
 
@@ -37,7 +44,42 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'owner_id' => 'required|exists:owners,nic',
+            'vehicle_number' => 'required|min:5|unique:vehicles,vehicle_number',
+            'color' => 'required|min:7',
+            'engine_number' => 'required|min:5',
+            'chassi_number' => 'required|min:5',
+            'engine_capacity' => 'required|integer',
+            'type' => 'required|min:2',
+            'images' => 'present|array'
+        ]);
+
+        $owner = Owner::where('nic', $request->get('owner_id'))->first();
+        $vehicle = new Vehicle;
+        $vehicle->vehicle_number = $request->get('vehicle_number');
+        $vehicle->color = $request->get('color');
+        $vehicle->engine_number = $request->get('engine_number');
+        $vehicle->engine_capacity = $request->get('engine_capacity');
+        $vehicle->chassi_number = $request->get('chassi_number');
+        $vehicle->type = $request->get('type');
+        $vehicle->owner()->associate($owner);
+        $vehicle->save();
+
+        $images = [];
+        foreach ($request->get('images') as $image){
+            $entry = new Image;
+            $entry->image = '/storage/_vehicles/' . $image;
+            $entry->vehicle()->associate($vehicle);
+            $entry->save();
+        }
+
+
+        log_entry(auth()->user() , "Vehicle added for <b>" . $owner->name . "</b>");
+
+        return redirect()->to('/admin/vehicles')->with(
+            callout('Information', 'success', 'Vehicle added')
+        );
     }
 
     /**

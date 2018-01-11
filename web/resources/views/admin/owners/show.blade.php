@@ -11,6 +11,7 @@
                 <div class="box-header">
                     <div class="box-tools pull-right">
                         <a href="{{ route('admin.owners.edit', ['owner' => $owner->id]) }}"><span class="label label-primary"><i class="fa fa-edit"></i> edit</span></a>
+                        <a href="{{ route('admin.vehicles.create', ['owner' => $owner->id]) }}"><span class="label label-primary"><i class="fa fa-plus"></i> add vehicle</span></a>
                         <a href="javascript:if(confirm('Do you really want to delete this owner ?')){document.getElementById('uuid{!! $owner->id !!}').submit();}"><span class="label label-primary"><i class="fa fa-trash"></i> delete</span></a>
                         <form id="uuid{{ $owner->id }}" action="{{ route('admin.owners.delete', ['owner' => $owner->id]) }}" method="post">
                             {{ csrf_field() }}
