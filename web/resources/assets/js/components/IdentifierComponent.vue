@@ -4,6 +4,7 @@
 			Identify vehicle
 		</div>
 		<form class="form" :action="action" :method="method">
+            <input type="hidden" name="_token" :value="csrf"/>
 			<div class="card-body">
 				<div class="card-text">
 					<div class="m-1" :class="{ error : hasError }">
@@ -12,9 +13,9 @@
 							<img class="card-img-top img-thumbnail" :src="image" alt="Image" />
 							<div v-if="hasError" class="error-box text-center text-white">{{ error_message }}</div>
 						</div>
-						<div v-if="!image">
-							<label class="custom-file">
-									<input type="file" class="custom-file-input"  name="image" @change="onFileChange">
+						<div v-if="image === null">
+							<label class="form-group">
+									<input type="file" class="form-control"  name="image" @change="onFileChange">
 									<span class="custom-file-control"></span>
 							</label>
 						</div>
@@ -24,9 +25,7 @@
 						<button type="submit" class="btn btn-primary mt-1 align-content-center pt-1" :disabled="!vehicle_id">Proceed...</button>
 					</div>
 				</div>
-	
 			</div>
-	
 		</form>
 	</div>
 </template>
@@ -48,13 +47,17 @@
 	    	'method':{
 	    		type: String,
 	    		required: true,
-	    	}
+	    	},
+            'csrf' : {
+			    type: String,
+                required: true,
+            }
 		},
 		data() {
 			return {
 				vehicle_id: '',
 				data: new FormData(),
-				image: '',
+				image: null,
 				hasError: false,
 				error_message: '',
 			}

@@ -20,7 +20,7 @@
                     <h3 class="box-title">Users</h3>
 
                     <div class="box-tools">
-                        <form action="{{ route('admin.users.search.ajax') }}" method="get">
+                        <form action="#">
                             <div class="input-group input-group-sm" style="width: 300px;">
                                 <input type="text" id="search" name="q" class="form-control pull-right autocomplete" autocomplete="false" placeholder="Search...">
 

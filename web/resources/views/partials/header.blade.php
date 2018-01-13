@@ -7,4 +7,5 @@
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('_admin/bower_components/font-awesome/css/font-awesome.min.css') }}">
 @yield('header-content')

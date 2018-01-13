@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLocationEntriesTable extends Migration
 {
@@ -17,6 +17,7 @@ class CreateLocationEntriesTable extends Migration
             $table->increments('id');
             $table->double('lat');
             $table->double('lng');
+            $table->string('location');
             $table->string('note','300')->nullable();
 
 	        $table->integer('user_id')->unsigned();

@@ -3,32 +3,32 @@
 @section('title', 'Login')
 
 @section('content')
-<div class="container">
+<div class="container pt-5">
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Login</div>
                 <div class="card-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('auth.login.attempt') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group row">
-                            <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail Address</label>
+                            <label for="email" class="col-lg-4 col-form-label text-lg-right">NIC</label>
 
                             <div class="col-lg-6">
                                 <input
-                                        id="email"
-                                        type="email"
-                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        name="email"
-                                        value="{{ old('email') }}"
+                                        id="username"
+                                        type="text"
+                                        class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
+                                        name="nic"
+                                        value="{{ old('nic') }}"
                                         required
                                         autofocus
                                 >
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('nic'))
                                     <div class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('nic') }}</strong>
                                     </div>
                                 @endif
                             </div>
@@ -70,7 +70,7 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link" href="#">
                                     Forgot Your Password?
                                 </a>
                             </div>

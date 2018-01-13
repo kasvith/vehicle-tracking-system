@@ -11,6 +11,7 @@
                 <div class="box-header">
                     <div class="box-tools pull-right">
                         <a href="{{ route('admin.owners.edit', ['owner' => $owner->id]) }}"><span class="label label-primary"><i class="fa fa-edit"></i> edit</span></a>
+                        <a href="{{ route('admin.vehicles.create', ['owner' => $owner->id]) }}"><span class="label label-primary"><i class="fa fa-plus"></i> add vehicle</span></a>
                         <a href="javascript:if(confirm('Do you really want to delete this owner ?')){document.getElementById('uuid{!! $owner->id !!}').submit();}"><span class="label label-primary"><i class="fa fa-trash"></i> delete</span></a>
                         <form id="uuid{{ $owner->id }}" action="{{ route('admin.owners.delete', ['owner' => $owner->id]) }}" method="post">
                             {{ csrf_field() }}
@@ -59,7 +60,29 @@
                 <!-- /.box-body -->
             </div>
         </div>
+        <!-- /.box -->
+        <div class="col-md-7" style="padding-top: 10px">
+            <div class="box box-danger" >
+                <div class="box-header with-border">
+                    <h3 class="box-title">Registered Vehicles</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="list-group list-group-unbordered">
+                        @if(count($owner->vehicles) > 0)
+                            @foreach($owner->vehicles as $vehicle)
+                                <li class="list-group-item"><a href="/admin/vehicles/{{ $vehicle->id }}">{{ $vehicle->vehicle_number }}</a></li>
+                            @endforeach
+                        @else
+                            <li class="list-group-item">No registered vehicles</li>
+                        @endif
+                    </ul>
+                </div>
+            <!-- /.box-body -->
+            </div>
             <!-- /.box -->
         </div>
+    </div>
 @endsection
 
