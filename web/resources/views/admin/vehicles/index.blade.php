@@ -43,11 +43,18 @@
 
                         @foreach($vehicles as $vehicle)
                             <tr>
-                                <td>{{ $vehicle->vehicle_number }}</td>
-                                <td>{{ $vehicle->color }}</td>
+                                <td><a href="/admin/vehicles/{{ $vehicle->id }}">{{ $vehicle->vehicle_number }}</a></td>
+                                <td><span class="color-box" style="background-color: {{ $vehicle->color }}"></td>
                                 <td>{{ $vehicle->type }}</td>
                                 <td>{{ $vehicle->owner->first_name . ' ' . $vehicle->owner->last_name }}</td>
-                                <td>Actions</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-flat"><i class="fa fa-edit"></i></a>
+                                    <a href="javascript:if(confirm('Do you really want to delete this vehicle ?')){document.getElementById('uuid{!! $vehicle->id !!}').submit();}"><span class="btn btn-sm btn-flat"><i class="fa fa-trash"></i></span></a>
+                                    <form id="uuid{{ $vehicle->id }}" action="{{ route('admin.vehicles.delete', ['vehicle' => $vehicle->id]) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </table>

@@ -3,6 +3,5 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/_admin/css/admin.css": "/_admin/css/admin.css",
-    "/_admin/js/admin_script.js": "/_admin/js/admin_script.js",
-    "/_admin/js/admin.js": "/_admin/js/admin.js"
+    "/_admin/js/admin_script.js": "/_admin/js/admin_script.js"
 }

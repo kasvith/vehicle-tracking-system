@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/vehicles', 'VehicleController@index')->name('admin.vehicles');// show all vehicles
 	Route::get('/vehicles/create', 'VehicleController@create')->name('admin.vehicles.create');// show create form
     Route::post('/vehicles/store', 'VehicleController@store')->name('admin.vehicles.store'); // store a vehicle
+	Route::get('/vehicles/{vehicle}', 'VehicleController@show')->name('admin.vehicles.show'); //  shows a vehicle
+	Route::delete('/vehicles/{vehicle}', 'VehicleController@destroy')->name('admin.vehicles.delete'); //  deletes a vehicle
 
     Route::post('/vehicles/ajax/images', 'ImageController@store')->name('admin.vehicles.ajax.images.store');// ajax file upload
     Route::delete('/vehicles/ajax/images/delete/{imageName}', 'ImageController@destroy')->name('admin.vehicles.ajax.images.delete');// ajax file upload

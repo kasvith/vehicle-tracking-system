@@ -20,11 +20,8 @@
                             </form>
                         @endif
                     </div>
-
                 </div>
-                    <!-- /.box-tools -->
-                
-
+                <!-- /.box-tools -->
                 <div class="box-body box-profile">
                     <img class="profile-user-img img-responsive img-circle" src="{{ asset($user->image) }}" alt="User profile picture">
 

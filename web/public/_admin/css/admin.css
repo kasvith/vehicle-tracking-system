@@ -30,3 +30,23 @@
   display: none;
 }
 
+.color-box {
+  float: left;
+  width: 100px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.image-gallery {
+  margin: 5px;
+  display: block;
+}
+
+.image-gallery img {
+  width: 70px;
+  height: 70px;
+  margin: 1px;
+  border: #0a0a0a 1px solid;
+}
+

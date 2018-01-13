@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+	public function __construct() {
+		$this->middleware('admin');
+	}
+
     /**
      * Display a listing of the resource.
      *
@@ -74,8 +78,7 @@ class VehicleController extends Controller
             $entry->save();
         }
 
-
-        log_entry(auth()->user() , "Vehicle added for <b>" . $owner->name . "</b>");
+        log_entry(auth()->user() , "Vehicle added for <b>" . $owner->nic . "</b>");
 
         return redirect()->to('/admin/vehicles')->with(
             callout('Information', 'success', 'Vehicle added')
@@ -88,9 +91,9 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vehicle $vehicle)
     {
-        //
+        return view('admin.vehicles.show', compact('vehicle'));
     }
 
     /**
@@ -119,11 +122,26 @@ class VehicleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vehicle $vehicle)
     {
-        //
+	    $success = $vehicle->delete();
+	    $callout_type = 'success';
+	    $callout = 'Vehicle <b>'. $vehicle->vehicle_number . "</b> removed successfully";
+	    $callout_title = 'Vehicle removed';
+
+	    if (!$success){
+		    $callout_type = 'danger';
+		    $callout = 'Owner removing failed due to unknown error';
+		    $callout_title = 'Failed removing owner';
+	    }
+
+	    log_entry(auth()->user() , 'Vehicle <b>' . $vehicle->vehicle_number . '</b> was removed');
+
+	    return redirect()->route('admin.vehicles')->with(
+		    callout($callout_title, $callout_type, $callout)
+	    );
     }
 }

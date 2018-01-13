@@ -60,7 +60,29 @@
                 <!-- /.box-body -->
             </div>
         </div>
+        <!-- /.box -->
+        <div class="col-md-7" style="padding-top: 10px">
+            <div class="box box-danger" >
+                <div class="box-header with-border">
+                    <h3 class="box-title">Registered Vehicles</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="list-group list-group-unbordered">
+                        @if(count($owner->vehicles) > 0)
+                            @foreach($owner->vehicles as $vehicle)
+                                <li class="list-group-item"><a href="/admin/vehicles/{{ $vehicle->id }}">{{ $vehicle->vehicle_number }}</a></li>
+                            @endforeach
+                        @else
+                            <li class="list-group-item">No registered vehicles</li>
+                        @endif
+                    </ul>
+                </div>
+            <!-- /.box-body -->
+            </div>
             <!-- /.box -->
         </div>
+    </div>
 @endsection
 

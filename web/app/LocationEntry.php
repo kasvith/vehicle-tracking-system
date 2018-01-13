@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LocationEntry extends Model
 {
 	protected $fillable = [
-		'lat', 'lng', 'note'
+		'lat', 'lng', 'note', 'location'
 	];
 
     public function user(){
