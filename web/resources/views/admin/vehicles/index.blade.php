@@ -1,8 +1,8 @@
 @extends('admin.master')
 
-@section('page-title', 'Owners')
+@section('page-title', 'Vehicles')
 
-@section('optional-title', 'manage all owners')
+@section('optional-title', 'manage all vehicles')
 
 @section('content')
     @include('admin.partials.callouts')

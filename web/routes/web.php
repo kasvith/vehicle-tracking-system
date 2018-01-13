@@ -68,5 +68,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/vehicles/ajax/images', 'ImageController@store')->name('admin.vehicles.ajax.images.store');// ajax file upload
     Route::delete('/vehicles/ajax/images/delete/{imageName}', 'ImageController@destroy')->name('admin.vehicles.ajax.images.delete');// ajax file upload
+
+	//blacklisted
+	Route::get('/blacklist', 'BlacklistedVehicleController@index')->name('admin.blacklist.index');
+	Route::get('/blacklist/{blacklistVehicle}', 'BlacklistedVehicleController@show')->name('admin.blacklist.show');
 });
 

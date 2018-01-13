@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\BlacklistVehicle;
 use App\Owner;
 use App\User;
+use App\Vehicle;
 
 class AdminController extends Controller
 {
@@ -15,8 +17,10 @@ class AdminController extends Controller
 	public function index(){
 		$users = User::count();
 		$owners = Owner::count();
+		$vehicles = Vehicle::count();
+		$blacklists = BlacklistVehicle::count();
 
-		return view('admin.dash', compact(['users', 'owners']));
+		return view('admin.dash', compact(['users', 'owners', 'vehicles', 'blacklists']));
 	}
 
 	public function showLogin(){
