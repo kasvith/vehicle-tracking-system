@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 import math
-import Main
+import Recognition
 import random
 
 import Preprocess
