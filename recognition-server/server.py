@@ -25,8 +25,11 @@ def hello():
         # Add here image processing
         # payload = vehicle_id
         # print payload
-        return jsonify({'error' : 'false', 'message' : 'No vehicle ID found. Please retry or enter manually !', 'payload' :vehicle_id})
-   
+        if vehicle_id<0 :
+        	return jsonify({'error' : 'false', 'message' : 'No vehicle ID found. Please retry or enter manually !', 'payload' :'-1'})
+   		else:
+   			return jsonify({'error' : 'false', 'message' : 'No vehicle ID found. Please retry or enter manually !', 'payload' :vehicle_id})
+   			
     return jsonify({'error' : 'true', 'message' : 'No image found'})
 
 
