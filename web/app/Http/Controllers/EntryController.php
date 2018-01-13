@@ -30,6 +30,7 @@ class EntryController extends Controller
 
 		if ($vehicle){
 			// its registered
+			log_entry(auth()->user(), 'Found vehicle with number <b>' .  $vehicle->vehicle_number .'</b> in a suspicious action');
 			return redirect()->route('entry.create.vehicle', ['vehicle' => $vehicle]);
 		}
 
@@ -43,9 +44,10 @@ class EntryController extends Controller
 			$blacklisted->save();
 		}
 
-		$blacklisted->user()->get();
+		log_entry(auth()->user(), 'Found unauthorized vehicle with number <b>' .  $blacklisted->vehicle_number .'</b> in a suspicious action');
 
-		return redirect()->route('entry.create.blacklisted.vehicle', [ 'blacklisted' => $blacklisted]);
+		return redirect()->route('entry.create.blacklisted.vehicle', [ 'blacklisted' => $blacklisted])
+			->withErrors(['message' => 'This vehicle is not found on our database, probably a scam !!!']);
 	}
 
 	public function createVehicleEntry(Vehicle $vehicle){
@@ -73,6 +75,8 @@ class EntryController extends Controller
 		$entry->user()->associate(auth()->user());
 		$entry->save();
 
+		log_entry(auth()->user(), 'Added entry for vehicle <b>' .  $vehicle->vehicle_number .'</b>');
+
 		return redirect()->route('entry.attempt')->with('message' , 'Entry added successfully');
 	}
 
@@ -92,6 +96,8 @@ class EntryController extends Controller
 		$entry->blacklist_vehicle()->associate($blacklistVehicle);
 		$entry->user()->associate(auth()->user());
 		$entry->save();
+
+		log_entry(auth()->user(), 'Added entry for unauthorized vehicle with number ' . $blacklistVehicle->vehicle_number);
 
 		return redirect()->route('entry.attempt')->with('message' , 'Entry added successfully');
 	}
