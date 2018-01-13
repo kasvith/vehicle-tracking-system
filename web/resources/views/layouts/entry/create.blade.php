@@ -4,7 +4,18 @@
 
 @section('content')
     <div id="app" class="container pt-5">
-        <div id="accordion" class="pt-5" role="tablist">
+        <div class="pt-3">
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ $error }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endforeach
+        </div>
+
+        <div id="accordion" class="pt-2" role="tablist">
             <div class="card">
                 <div class="card-header" role="tab" id="headingTwo">
                     <h5 class="mb-0">
