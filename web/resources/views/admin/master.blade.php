@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('admin.partials.head')
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini fixed">

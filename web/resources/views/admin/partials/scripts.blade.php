@@ -1,36 +1,10 @@
-<!-- jQuery 3 -->
 <script src="{{ asset('_admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
-<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
+<script src="/js/jquery-migrate-3.0.0.min.js"></script>
 <script src="{{ asset('_admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- AdminLTE App -->
 <script src="{{ asset('_admin/js/adminlte.js') }}"></script>
-
 <script src="{{ asset('_admin/plugins/iCheck/icheck.min.js') }}"></script>
-
 <script src="{{ asset('_admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('_admin/bower_components/jquery-ui/jquery-ui.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('.has-error').click(function () {
-            $(this).removeClass('has-error');
-            $(this).children('.help-block').remove();
-        });
-
-        $('.select2').select2();
-
-        $('.overlay').children('.callout').each(function (i, elem) {
-            $(this).click(function () {
-               $(this).fadeOut(300, function () {
-                    $(this).remove();
-               });
-            });
-
-            $(this).delay(2000).fadeOut((i+1)*2000, function () {
-                $(this).remove()
-            })
-        })
-    })
-</script>
-
+<script src="/_admin/js/admin_script.js"></script>
+<script src="/js/bootstrap-notify.min.js"></script>
 @yield('user-scripts')

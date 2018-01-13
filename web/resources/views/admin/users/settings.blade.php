@@ -103,7 +103,7 @@
                 checkboxClass: 'icheckbox_minimal-blue',
                 radioClass   : 'iradio_minimal-blue'
             });
-        })
+        });
 
         function validatePassword() {
             var validator = $("#changepassword").validate({
@@ -132,8 +132,8 @@
                         error.insertAfter(element);
                     }
                 }
-            });
-        //}
+            })
+        }
     </script>
 
     @include('admin.partials.scripts.file-upload-preview')

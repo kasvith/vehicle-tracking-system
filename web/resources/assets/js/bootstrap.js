@@ -9,7 +9,8 @@ window.Popper = require('popper.js/dist/umd/popper');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery/dist/jquery.slim');
+    if (window.$ === undefined)
+        window.$ = window.jQuery = require('jquery/dist/jquery.slim');
 
     require('bootstrap');
 } catch (e) {}
@@ -40,17 +41,3 @@ if (token) {
 
 window.identity_server_uri = 'http://localhost:5000/vehicle';
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });

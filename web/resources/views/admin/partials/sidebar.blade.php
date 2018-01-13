@@ -26,7 +26,7 @@
 
             <li class="header">VEHICLE MANAGEMENT</li>
             <li class="{{ active_route('admin.owners') }} {{ active_route('admin.owners.*') }}"><a href="{{ route('admin.owners') }}"><i class="fa fa-address-card-o"></i> <span>Owners</span></a></li>
-            <li class="{{ active_route('admin.vehicles') }}"><a href="#"><i class="fa fa-automobile"></i> <span>Vehicles</span></a></li>
+            <li class="{{ active_route('admin.vehicles') }}"><a href="{{ route('admin.vehicles') }}"><i class="fa fa-automobile"></i> <span>Vehicles</span></a></li>
 
             <li class="header">MANAGE</li>
             <li class="{{ active_route('admin.users.settings') }}"><a href="{{ route('admin.users.settings') }}"><i class="fa fa-gear"></i> <span>Settings</span></a></li>

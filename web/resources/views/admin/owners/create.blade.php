@@ -50,7 +50,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="date_of_birth" value="{{ old('date_of_birth') }}" style="width: 100%" id="datepicker">
+                                <input type="text" class="form-control pull-right" data-date-format="yyyy-mm-dd" name="date_of_birth" value="{{ old('date_of_birth') }}" style="width: 100%" id="datepicker">
                             </div>
                             @if($errors->has('date_of_birth'))<span class="help-block">{{ $errors->first('date_of_birth') }}</span>@endif
                         </div>

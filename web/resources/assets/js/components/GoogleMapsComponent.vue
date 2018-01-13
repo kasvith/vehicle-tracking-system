@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<div class="google-map" :id="map_name" :style="styles">
-			<div>btn</div>
 		</div>
 		<div v-if="addEntryEndpoint">
-			<form :action="addEntryEndpoint" @submit="addEntry" method="get" class="form">
+			<form :action="addEntryEndpoint" @submit="addEntry" method="post" class="form">
 				<input type="hidden" name="lat" v-model="lat" required/>
 				<input type="hidden" name="lng" v-model='lng' required/>
+				<input type="hidden" name="_token" :value="token"/>
 				<input type="hidden" name="location" v-model="location" required>
 				<div class="p-1 m-1 text-center"><h6>Location : <b> {{ location }} </b></h6></div>
 				<textarea name="note" rows="8" class="form-control p-1" v-model="note" placeholder="Take a note" required></textarea>
@@ -24,14 +24,16 @@ export default {
 	name: 'google-maps',
 	props:{
 		name: {required : true},
-		width: {Number},
-		height: {Number},
+		width: {String, default: '100%'},
+		height: {String, default:'600px'},
 		addEntryEndpoint: {String},
-		locations: {type: Array},
-		zoom: {type : Number, default: 8}
+		locs: {type: String},
+		zoom: { default: 8},
+		token: {type : String, default: ''},
 	},
 	data () {
 		return {
+		    loaded: false,
 			infoWindow: null,
 			map: null,
 			markers: [],
@@ -44,6 +46,7 @@ export default {
 			geocoder: null,
 			styles : {
 				height : this.get_height(),
+				width: this.get_width(),
 			}
 		}
 	},
@@ -51,39 +54,43 @@ export default {
 		map_name(){
 			return this.name + "-map";
 		},
+		locations(){
+		    return JSON.parse(this.locs);
+		}
 	},
-	mounted() {
-	    const element = document.getElementById(this.map_name)
-	    const options = {
-		    zoom: this.zoom,
-		    center: new google.maps.LatLng(7.292501, 80.634192)
-	    }
-
-	    this.map = new google.maps.Map(element, options);
-	    this.infoWindow = new google.maps.InfoWindow;
-	    this.geocoder = new google.maps.Geocoder;
-
-	    
-
-	    if (this.addEntryEndpoint) {
-	    	var centerControlDiv = document.createElement('div');
-	        var centerControl = new this.CenterControl(centerControlDiv, this.map);
-
-	        centerControlDiv.index = 1;
-	        this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-	    	this.geoLocation()
-	    }else{
-	    	this.renderAll()
-	    }
-	    
-  	},
+	created() {
+	  	window.bus.$on('loadMaps', this.init)
+	},
   	methods:{
-  		get_width(){
-			return this.width + 'px';
-		},
+        init() {
+            const element = document.getElementById(this.map_name)
+            const options = {
+                zoom: this.zoom,
+                center: new google.maps.LatLng(7.292501, 80.634192)
+            }
 
+            this.map = new google.maps.Map(element, options);
+            this.infoWindow = new google.maps.InfoWindow;
+            this.geocoder = new google.maps.Geocoder;
+
+            if (this.addEntryEndpoint) {
+                var centerControlDiv = document.createElement('div');
+                var centerControl = new this.CenterControl(centerControlDiv, this.map);
+
+                centerControlDiv.index = 1;
+                this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+                this.geoLocation()
+            }else{
+                this.renderAll()
+            }
+
+
+        },
+  		get_width(){
+			return this.width;
+		},
 		get_height(){
-			return this.height + 'px';
+			return this.height;
 		},
 		CenterControl(controlDiv, map) {
 	        // Set CSS for the control border.
@@ -131,7 +138,7 @@ export default {
 
 					// we will need to change this later
 					let marker = this.renderMarker(pos, location.created_at, false);
-					let content = '<div id="content">'+ location.note +'</div>';
+					let content = '<div id="content">' + '<h5>'+ location.created_at +'</h5>' + location.note +'</div>';
 					let infowindow = new google.maps.InfoWindow;
 
 					google.maps.event.addListener(marker, 'click', ((marker,content,infowindow) => {
