@@ -497,11 +497,18 @@ module.exports = __webpack_require__(26);
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
+window.bus = new Vue({});
+
 Vue.component('identifier-component', __webpack_require__(14));
 Vue.component('google-maps', __webpack_require__(20));
 
-var app = new Vue({
-    el: '#app'
+var app = window.app = new Vue({
+    el: '#app',
+    methods: {
+        initMaps: function initMaps() {
+            window.bus.$emit('loadMaps', true);
+        }
+    }
 });
 
 /***/ }),
@@ -535,7 +542,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources/assets/js/components/IdentifierComponent.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -547,7 +553,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-762556ed", Component.options)
   } else {
     hotAPI.reload("data-v-762556ed", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -567,13 +573,13 @@ var content = __webpack_require__(16);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("03578b2e", content, false);
+var update = __webpack_require__(4)("4d7f0636", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./IdentifierComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IdentifierComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-762556ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IdentifierComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -586,7 +592,7 @@ if(false) {
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(undefined);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -667,7 +673,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 var config = {
 	headers: {
@@ -685,13 +690,17 @@ var config = {
 		'method': {
 			type: String,
 			required: true
+		},
+		'csrf': {
+			type: String,
+			required: true
 		}
 	},
 	data: function data() {
 		return {
 			vehicle_id: '',
 			data: new FormData(),
-			image: '',
+			image: null,
 			hasError: false,
 			error_message: ''
 		};
@@ -752,7 +761,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card", staticStyle: { width: "20rem" } }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("\n\t\tIdentify vehicle\n\t")
+      _vm._v("\n\t\t\tIdentify vehicle\n\t\t")
     ]),
     _vm._v(" "),
     _c(
@@ -762,6 +771,11 @@ var render = function() {
         attrs: { action: _vm.action, method: _vm.method }
       },
       [
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf }
+        }),
+        _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "card-text" }, [
             _c("div", { staticClass: "m-1", class: { error: _vm.hasError } }, [
@@ -793,11 +807,11 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              !_vm.image
+              _vm.image === null
                 ? _c("div", [
-                    _c("label", { staticClass: "custom-file" }, [
+                    _c("label", { staticClass: "form-group" }, [
                       _c("input", {
-                        staticClass: "custom-file-input",
+                        staticClass: "form-control",
                         attrs: { type: "file", name: "image" },
                         on: { change: _vm.onFileChange }
                       }),
@@ -891,7 +905,6 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 Component.options.__file = "resources/assets/js/components/GoogleMapsComponent.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -903,7 +916,7 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-23990a86", Component.options)
   } else {
     hotAPI.reload("data-v-23990a86", Component.options)
-' + '  }
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -923,13 +936,13 @@ var content = __webpack_require__(22);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("6313bbae", content, false);
+var update = __webpack_require__(4)("384c69f6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-23990a86\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./GoogleMapsComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-23990a86\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./GoogleMapsComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-23990a86\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GoogleMapsComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-23990a86\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GoogleMapsComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -942,7 +955,7 @@ if(false) {
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(undefined);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
@@ -984,14 +997,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	name: 'google-maps',
 	props: {
 		name: { required: true },
-		width: { Number: Number },
-		height: { Number: Number },
+		width: { String: String, default: '100%' },
+		height: { String: String, default: '600px' },
 		addEntryEndpoint: { String: String },
-		locations: { type: Array },
-		zoom: { type: Number, default: 8 }
+		locs: { type: String },
+		zoom: { default: 8 },
+		token: { type: String, default: '' }
 	},
 	data: function data() {
 		return {
+			loaded: false,
 			infoWindow: null,
 			map: null,
 			markers: [],
@@ -1003,7 +1018,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			location: 'Locating...',
 			geocoder: null,
 			styles: {
-				height: this.get_height()
+				height: this.get_height(),
+				width: this.get_width()
 			}
 		};
 	},
@@ -1011,37 +1027,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	computed: {
 		map_name: function map_name() {
 			return this.name + "-map";
+		},
+		locations: function locations() {
+			return JSON.parse(this.locs);
 		}
 	},
-	mounted: function mounted() {
-		var element = document.getElementById(this.map_name);
-		var options = {
-			zoom: this.zoom,
-			center: new google.maps.LatLng(7.292501, 80.634192)
-		};
-
-		this.map = new google.maps.Map(element, options);
-		this.infoWindow = new google.maps.InfoWindow();
-		this.geocoder = new google.maps.Geocoder();
-
-		if (this.addEntryEndpoint) {
-			var centerControlDiv = document.createElement('div');
-			var centerControl = new this.CenterControl(centerControlDiv, this.map);
-
-			centerControlDiv.index = 1;
-			this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-			this.geoLocation();
-		} else {
-			this.renderAll();
-		}
+	created: function created() {
+		window.bus.$on('loadMaps', this.init);
 	},
 
 	methods: {
+		init: function init() {
+			var element = document.getElementById(this.map_name);
+			var options = {
+				zoom: this.zoom,
+				center: new google.maps.LatLng(7.292501, 80.634192)
+			};
+
+			this.map = new google.maps.Map(element, options);
+			this.infoWindow = new google.maps.InfoWindow();
+			this.geocoder = new google.maps.Geocoder();
+
+			if (this.addEntryEndpoint) {
+				var centerControlDiv = document.createElement('div');
+				var centerControl = new this.CenterControl(centerControlDiv, this.map);
+
+				centerControlDiv.index = 1;
+				this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+				this.geoLocation();
+			} else {
+				this.renderAll();
+			}
+		},
 		get_width: function get_width() {
-			return this.width + 'px';
+			return this.width;
 		},
 		get_height: function get_height() {
-			return this.height + 'px';
+			return this.height;
 		},
 		CenterControl: function CenterControl(controlDiv, map) {
 			// Set CSS for the control border.
@@ -1088,7 +1110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 						// we will need to change this later
 					};var marker = _this.renderMarker(pos, location.created_at, false);
-					var content = '<div id="content">' + location.note + '</div>';
+					var content = '<div id="content">' + '<h5>' + location.created_at + '</h5>' + location.note + '</div>';
 					var infowindow = new google.maps.InfoWindow();
 
 					google.maps.event.addListener(marker, 'click', function (marker, content, infowindow) {
@@ -1182,15 +1204,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "google-map",
-        style: _vm.styles,
-        attrs: { id: _vm.map_name }
-      },
-      [_c("div", [_vm._v("btn")])]
-    ),
+    _c("div", {
+      staticClass: "google-map",
+      style: _vm.styles,
+      attrs: { id: _vm.map_name }
+    }),
     _vm._v(" "),
     _vm.addEntryEndpoint
       ? _c("div", [
@@ -1198,7 +1216,7 @@ var render = function() {
             "form",
             {
               staticClass: "form",
-              attrs: { action: _vm.addEntryEndpoint, method: "get" },
+              attrs: { action: _vm.addEntryEndpoint, method: "post" },
               on: { submit: _vm.addEntry }
             },
             [
@@ -1242,6 +1260,11 @@ var render = function() {
                     _vm.lng = $event.target.value
                   }
                 }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.token }
               }),
               _vm._v(" "),
               _c("input", {
@@ -1300,7 +1323,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("div", { staticClass: "text-center p-1 m-1" }, [
-                _vm._m(0, false, false),
+                _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "button",

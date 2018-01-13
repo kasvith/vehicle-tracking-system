@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\LocationEntry;
 use App\Owner;
 use App\Vehicle;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ class VehicleController extends Controller
 {
 	public function __construct() {
 		$this->middleware('admin');
+		$this->middleware('officer')->only('addLocationEntry');
 	}
 
     /**
@@ -143,5 +145,24 @@ class VehicleController extends Controller
 	    return redirect()->route('admin.vehicles')->with(
 		    callout($callout_title, $callout_type, $callout)
 	    );
+    }
+
+    public function addLocationEntry(Request $request, Vehicle $vehicle){
+    	$request->validate([
+    		'location' => 'required',
+		    'lat' => 'required',
+		    'lng' => 'required',
+		    'note' => 'sometimes|min:5'
+	    ]);
+
+    	$entry = new LocationEntry;
+    	$entry->lat = $request->get('lat');
+    	$entry->lng = $request->get('lng');
+    	$entry->note = $request->get('note');
+    	$entry->vehicle()->associate($vehicle);
+
+    	$entry->save();
+
+    	return redirect('/')->with('message', 'Entry added');
     }
 }

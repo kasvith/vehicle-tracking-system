@@ -13,8 +13,18 @@
 
 Route::get('/', function () {
 	return view('welcome');
-});
+})->name('home');
+Route::get('/entry', 'EntryController@attempt')->name('entry.attempt');
+Route::get('/entry/add/vehicle/{vehicle}', 'EntryController@createVehicleEntry')->name('entry.create.vehicle');
+Route::get('/entry/add/blacklisted/{blacklistVehicle}', 'EntryController@createBlacklistedVehicleEntry')->name('entry.create.blacklisted.vehicle');
+Route::post('/entry/add/vehicle/{vehicle}', 'EntryController@addVehicleEntry')->name('entry.create.vehicle.post');
+Route::post('/entry/add/blacklisted/{blacklistVehicle}', 'EntryController@addBlacklistedVehicleEntry')->name('entry.create.blacklisted.vehicle.post');
+Route::post('/identify', 'EntryController@identify')->name('entry.identify');
 
+
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('auth.login');
+Route::post('/login', 'Auth\LoginController@login')->name('auth.login.attempt');
+Route::get('/logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 Route::group(['prefix' => 'admin'], function () {
 	//dashboard

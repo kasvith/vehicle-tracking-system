@@ -80,8 +80,8 @@
                     <h3 class="box-title">Entries</h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
-
+                <div class="box-body" id="app">
+                    <google-maps name="locations" locs="{{ $vehicle->location_entries }}"></google-maps>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -91,6 +91,10 @@
 @endsection
 
 @section('user-scripts')
+    <script src="/js/vendor.js"></script>
+    <script src="/js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=loadMap"></script>
+
     <script>
         $(document).ready(function () {
             $('.image-gallery img').on('click', function () {
@@ -100,6 +104,10 @@
                 });
             });
         });
+
+        function loadMap(){
+            window.app.initMaps()
+        }
     </script>
 @endsection
 

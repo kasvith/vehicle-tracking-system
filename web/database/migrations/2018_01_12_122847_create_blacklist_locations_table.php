@@ -15,6 +15,14 @@ class CreateBlacklistLocationsTable extends Migration
     {
         Schema::create('blacklist_locations', function (Blueprint $table) {
             $table->increments('id');
+	        $table->double('lat');
+	        $table->double('lng');
+	        $table->string('location');
+	        $table->string('note','300')->nullable();
+	        $table->integer('blacklist_vehicle_id')->unsigned();
+	        $table->foreign('blacklist_vehicle_id')->references('id')->on('blacklist_vehicles')->onDelete('cascade');
+	        $table->integer('user_id')->unsigned();
+	        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
