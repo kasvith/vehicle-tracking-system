@@ -4,7 +4,7 @@ import uuid
 
 import os
 
-import Recognition
+import Main
 
 app = Flask(__name__)
 CORS(app)
@@ -18,13 +18,14 @@ def hello():
     if 'image' in request.files:
         f = request.files['image']
         ext = '.' + f.filename.split('.')[-1]
-        # filePath = 'tmp/' + str(uuid.uuid4()) + ext
-        f.save('tmp/' + str(uuid.uuid4()) + ext)
+        filePath = 'tmp/' + str(uuid.uuid4()) + ext
+        f.save(filePath)
 
-        vehicle_id = Recognition.recognise('tmp/' + str(uuid.uuid4()) + ext)
+        vehicle_id = Main.recognise(filePath)
         # Add here image processing
-        # set payload
-        return jsonify({'error' : 'false', 'message' : 'No vehicle ID found. Please retry or enter manually !', 'payload' : '123456'})
+        # payload = vehicle_id
+        # print payload
+        return jsonify({'error' : 'false', 'message' : 'No vehicle ID found. Please retry or enter manually !', 'payload' :vehicle_id})
    
     return jsonify({'error' : 'true', 'message' : 'No image found'})
 
