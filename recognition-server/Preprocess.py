@@ -57,13 +57,3 @@ def maximizeContrast(imgGrayscale):
 
     return imgGrayscalePlusTopHatMinusBlackHat
 # end function
-
-
-
-
-
-
-
-
-
-
