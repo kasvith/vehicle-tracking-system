@@ -11,10 +11,5 @@ RUN apt-get update && apt-get install -y \
     python-pycurl \ 
     python-opencv
 
-# Install Open CV - Warning, this takes absolutely forever
+# Install Open CV
 RUN pip install  --no-cache-dir opencv-python
-
-COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . /usr/src/app 
