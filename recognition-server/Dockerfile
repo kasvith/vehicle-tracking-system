@@ -8,8 +8,6 @@ WORKDIR /usr/src/app
 # Various Python and C/build deps
 RUN apt-get update && apt-get install -y \ 
     wget \
-    build-essential \ 
-    cmake \ 
     git \
     unzip \ 
     pkg-config \
@@ -28,7 +26,6 @@ RUN apt-get update && apt-get install -y \
     gfortran \
     webp \ 
     python-opencv \ 
-    qt5-default \
     libvtk6-dev \ 
     zlib1g-dev 
 
