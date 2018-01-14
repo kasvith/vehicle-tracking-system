@@ -19,8 +19,8 @@ def hello():
        
         if vehicle_id == -1:
         	return jsonify({'error' : 'true', 'message' : 'No vehicle ID found. Please retry or enter manually !', 'payload' :'-1'})
-   		else:
-   			return jsonify({'error' : 'false', 'message' : 'Vehicle ID Found', 'payload' : vehicle_id})
+   		
+   		return jsonify({'error' : 'false', 'message' : 'Vehicle ID Found', 'payload' : vehicle_id})
    			
     return jsonify({'error' : 'true', 'message' : 'No image found'})
 
