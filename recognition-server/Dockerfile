@@ -7,17 +7,9 @@ WORKDIR /usr/src/app
 
 # Various Python and C/build deps
 RUN apt-get update && apt-get install -y \ 
-    python-dev \ 
-    libopencv-dev \ 
-    libav-tools  \ 
-    libjpeg-dev \ 
-    libpng-dev \ 
     python-numpy \ 
     python-pycurl \ 
-    libatlas-base-dev \
-    python-opencv \ 
-    libvtk6-dev \ 
-    zlib1g-dev 
+    python-opencv
 
 # Install Open CV - Warning, this takes absolutely forever
 RUN pip install  --no-cache-dir opencv-python
