@@ -37,7 +37,7 @@ RUN mkdir -p ~/opencv cd ~/opencv && \
     wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.3.0.zip && \
     unzip opencv_contrib.zip && \
     rm opencv_contrib.zip && \
-    mv opencv-3.3.0 OpenCV && \
+    mv opencv_contrib-3.3.0 OpenCV && \
     cd OpenCV && \
     mkdir build && \ 
     cd build && \
