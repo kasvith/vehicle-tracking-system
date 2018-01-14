@@ -20,3 +20,11 @@ A simple vehicle tracking system(VIS)
   **nic** = 123456789,
   **password** = admin
 - Start your server by `php artisan serve`
+
+# If you have installed Docker in your system
+- rename .env.example to .env
+- Update your keys as in above and config them
+- `cd recognition-server && docker-composer up`
+- `cd web && docker-composer up`
+
+This will run the servers in your local machine
