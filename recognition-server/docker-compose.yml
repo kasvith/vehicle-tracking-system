@@ -1,0 +1,7 @@
+version: '2'
+services:
+  recognition-server:
+    image: kasvith/opencv-python2
+    ports:
+      - 5000:5000
+    command: python server.py
